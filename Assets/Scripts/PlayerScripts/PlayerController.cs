@@ -12,6 +12,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 _input;
     public Animator anim;
 
+    [SerializeField] private AudioSource SwordSlashAudio;
+
     void Update(){
 
         GatherInput();
@@ -66,8 +68,9 @@ public class PlayerController : MonoBehaviour
     private void Attack()
     {
         //attack animation
+        SwordSlashAudio.Play();
         anim.SetTrigger("Attack 1");
-
+        
 
     }
 
