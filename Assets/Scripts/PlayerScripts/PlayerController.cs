@@ -10,11 +10,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _turnSpeed = 360;
 
     private Vector3 _input;
+    public Animator anim;
 
     void Update(){
 
         GatherInput();
         Look();
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Attack();
+        }
+
     }
 
     void FixedUpdate() {
@@ -51,7 +58,17 @@ public class PlayerController : MonoBehaviour
 
     void Move(){
         _instance.MovePosition(transform.position + (transform.forward * _input.magnitude) * _speed * Time.deltaTime);
+
+        float speed = _input.magnitude; // Calculate the magnitude of the movement input
+        anim.SetFloat("Speed", speed); // Update the "Speed" animation parameter
     }
 
+    private void Attack()
+    {
+        //attack animation
+        anim.SetTrigger("Attack 1");
+
+
+    }
 
 }
