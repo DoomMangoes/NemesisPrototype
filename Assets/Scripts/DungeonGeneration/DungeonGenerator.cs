@@ -24,5 +24,8 @@ public class DungeonGenerator : MonoBehaviour
 
             RoomController.instance.LoadRoom("Empty", roomLocation.x, roomLocation.y);
         }
+
+        //RoomController.instance.checkDoors = true;
+        //RoomController.instance.CheckUnusedDoors();
     }
 }

@@ -32,6 +32,8 @@ public class RoomController : MonoBehaviour
 
     bool isLoadingRoom = false;
 
+    //public bool checkDoors = false;
+
     void Awake() {
         instance = this;
     }
@@ -48,6 +50,13 @@ public class RoomController : MonoBehaviour
 
     void Update() {
         UpdateRoomQueue();    
+
+        /*
+        if(checkDoors){
+            CheckUnusedDoors();
+            checkDoors = false;
+        };
+        */
     }
 
     void UpdateRoomQueue(){
@@ -96,26 +105,34 @@ public class RoomController : MonoBehaviour
 
     public void RegisterRoom(Room room){
 
-        room.transform.position = new Vector3( 
-            currentLoadRoomData.X * room.Width,
-            0,
-            currentLoadRoomData.Z * room.Height
-        );
+        if(!DoesRoomExist(currentLoadRoomData.X, currentLoadRoomData.Z)){
+            room.transform.position = new Vector3( 
+                currentLoadRoomData.X * room.Width,
+                0,
+                currentLoadRoomData.Z * room.Height
+            );
 
-        room.X = currentLoadRoomData.X;
-        room.Z = currentLoadRoomData.Z;
-        room.name = currentWorldName + "-" + currentLoadRoomData.name + " " + room.X + ", " + room.Z;
-        room.transform.parent = transform;
+            room.X = currentLoadRoomData.X;
+            room.Z = currentLoadRoomData.Z;
+            room.name = currentWorldName + "-" + currentLoadRoomData.name + " " + room.X + ", " + room.Z;
+            room.transform.parent = transform;
 
-        isLoadingRoom = false;
+            isLoadingRoom = false;
 
-        if(loadedRooms.Count == 0){
+            if(loadedRooms.Count == 0){
 
-            RoomCameraController.instance.currRoom = room;
+                RoomCameraController.instance.currRoom = room;
+            }
+
+
+            loadedRooms.Add(room);
+            room.RemoveUnconnectedDoors();
         }
-
-
-        loadedRooms.Add(room);
+        else
+        {
+            Destroy(room.gameObject);
+            isLoadingRoom = false;
+        }
     }
 
     public bool DoesRoomExist(int x, int z){
@@ -125,9 +142,26 @@ public class RoomController : MonoBehaviour
         return loadedRooms.Find( item => item.X == x && item.Z == z) != null;
     }
 
+     public Room FindRoom(int x, int z){
+
+        //Changed to Z;
+
+        return loadedRooms.Find( item => item.X == x && item.Z == z);
+    }
+
     public void OnPlayerEnterRoom(Room room){
 
         RoomCameraController.instance.currRoom = room;
         currRoom = room;
     }
+    /*
+    public void CheckUnusedDoors(){
+
+        foreach(Room room in loadedRooms){
+            room.RemoveUnconnectedDoors();
+        }
+
+    }
+    */
+    
 }

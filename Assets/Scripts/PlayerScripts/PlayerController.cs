@@ -6,8 +6,8 @@ public class PlayerController : MonoBehaviour
 {
 
     [SerializeField] private Rigidbody _instance;
-    [SerializeField] private float _speed = 5;
-    [SerializeField] private float _turnSpeed = 360;
+    [SerializeField] private float _speed = 5f;
+    [SerializeField] private float _turnSpeed = 360f;
 
     private Vector3 _input;
     public Animator anim;
@@ -74,4 +74,11 @@ public class PlayerController : MonoBehaviour
 
     }
 
+    /*
+    void OnCollisionEnter(Collision other)
+    {
+        _input = Vector3.zero;
+        _instance.velocity = Vector3.zero;
+    }
+    */
 }
