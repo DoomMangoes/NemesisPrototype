@@ -11,7 +11,12 @@ public class Room : MonoBehaviour
 
     public Door leftDoor, rightDoor, topDoor, bottomDoor;
 
+   
+
     public List<Door> doors = new List<Door>();
+
+    public Wall leftWall, rightWall, topWall, bottomWall;
+    public List<Wall> walls = new List<Wall>();
 
     // Start is called before the first frame update
     void Start()
@@ -42,6 +47,27 @@ public class Room : MonoBehaviour
                 break;
             }
         }
+        Wall[] ws = GetComponentsInChildren<Wall>();
+
+        foreach(Wall w in ws){
+
+            walls.Add(w);
+            switch(w.wallType){
+
+                case Wall.WallType.right:
+                rightWall = w;
+                break;
+                case Wall.WallType.left:
+                leftWall = w;
+                break;
+                case Wall.WallType.top:
+                topWall = w;
+                break;
+                case Wall.WallType.bottom:
+                bottomWall = w;
+                break;
+            }
+        }
 
         RoomController.instance.RegisterRoom(this);
     }
@@ -56,7 +82,7 @@ public class Room : MonoBehaviour
                     if(GetRight() == null){
                          ActivatePreviousDoor(door);
                         door.gameObject.SetActive(false);
-                       
+                        
                     }
                 break;
                 case Door.DoorType.left:
@@ -147,9 +173,6 @@ public class Room : MonoBehaviour
 
     void ActivatePreviousDoor(Door door){
 
-
-        
-
         Room tempRoom;
         switch(door.doorType){
 
@@ -185,52 +208,6 @@ public class Room : MonoBehaviour
 
         }
 
-
-
-
-
-        /*
-
-        Room tempRoom;
-        switch(door.doorType){
-
-                case Door.DoorType.right:
-                  
-                   if(GetLeft() != null){
-                     tempRoom = GetLeft();
-                     Door tempDoor = tempRoom.doors.Find( roomDoor => roomDoor.doorType.ToString() == "left");
-                     tempDoor.gameObject.SetActive(true);
-                   }
-                   
-                break;
-                case Door.DoorType.left:
-                   
-                   if(GetRight() != null){
-                     tempRoom = GetRight();
-                     Door tempDoor = tempRoom.doors.Find( roomDoor => roomDoor.doorType.ToString() == "right");
-                     tempDoor.gameObject.SetActive(true);
-                   }
-                break;
-                case Door.DoorType.top:
-               
-                   if(GetBottom() != null){
-                      tempRoom = GetBottom();
-                     Door tempDoor = tempRoom.doors.Find( roomDoor => roomDoor.doorType.ToString() == "bottom");
-                     tempDoor.gameObject.SetActive(true);
-                   }
-                break;
-                case Door.DoorType.bottom:
-                    
-                   if(GetTop() != null){
-                    tempRoom = GetTop();
-                     Door tempDoor = tempRoom.doors.Find( roomDoor => roomDoor.doorType.ToString() == "top");
-                     tempDoor.gameObject.SetActive(true);
-                   }
-                break;
-
-        }
-        */
-
     }
 
     public void ReactivateDoors(){
@@ -263,6 +240,128 @@ public class Room : MonoBehaviour
                if(GetBottom() != null){
                  
                         door.gameObject.SetActive(true);
+                    }
+                break;
+            }
+        }
+    }
+    
+    public void ActivateWalls(){
+
+        foreach(Wall wall in walls){
+
+            switch(wall.wallType){
+
+                case Wall.WallType.right:
+                    if(GetRight() == null){
+                        DeactivatePreviousWall(wall);
+                        wall.gameObject.SetActive(true);
+                       
+                    }
+                    else{
+                        wall.gameObject.SetActive(false);
+                    }
+                break;
+                case Wall.WallType.left:
+                if(GetLeft() == null){
+                        DeactivatePreviousWall(wall);
+                         wall.gameObject.SetActive(true);
+                       
+                    } else{
+                        wall.gameObject.SetActive(false);
+                    }
+                break;
+                case Wall.WallType.top:
+                if(GetTop() == null){
+                    DeactivatePreviousWall(wall);
+                  wall.gameObject.SetActive(true);
+                    } else{
+                        wall.gameObject.SetActive(false);
+                    }
+                break;
+                case Wall.WallType.bottom:
+               if(GetBottom() == null){
+                DeactivatePreviousWall(wall);
+                wall.gameObject.SetActive(true);
+                    } else{
+                        wall.gameObject.SetActive(false);
+                    }
+                break;
+            }
+        }
+    }
+    
+
+    
+    void DeactivatePreviousWall(Wall wall){
+
+        Room tempRoom;
+        switch(wall.wallType){
+
+                case Wall.WallType.right:
+                  
+                   if(GetLeft() != null){
+                     tempRoom = GetLeft();
+                     tempRoom.DeactivateWalls();
+                   }
+                   
+                break;
+                case Wall.WallType.left:
+                   
+                   if(GetRight() != null){
+                     tempRoom = GetRight();
+                     tempRoom.DeactivateWalls();
+                   }
+                break;
+                case Wall.WallType.top:
+               
+                   if(GetBottom() != null){
+                      tempRoom = GetBottom();
+                     tempRoom.DeactivateWalls();
+                   }
+                break;
+                case Wall.WallType.bottom:
+                    
+                   if(GetTop() != null){
+                    tempRoom = GetTop();
+                   tempRoom.DeactivateWalls();
+                   }
+                break;
+
+        }
+
+    }
+
+    public void DeactivateWalls(){
+
+        foreach(Wall wall in walls){
+
+            switch(wall.wallType){
+
+                case Wall.WallType.right:
+                    if(GetRight() != null){
+                        wall.gameObject.SetActive(false);
+                       
+                    }
+                break;
+                case Wall.WallType.left:
+                if(GetLeft() != null){
+                         
+                        wall.gameObject.SetActive(false);
+                       
+                    }
+                break;
+                case Wall.WallType.top:
+                if(GetTop() != null){
+                    
+                        wall.gameObject.SetActive(false);
+                         
+                    }
+                break;
+                case Wall.WallType.bottom:
+               if(GetBottom() != null){
+                 
+                        wall.gameObject.SetActive(false);
                     }
                 break;
             }

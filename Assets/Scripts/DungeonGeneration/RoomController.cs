@@ -127,6 +127,7 @@ public class RoomController : MonoBehaviour
 
             loadedRooms.Add(room);
             room.RemoveUnconnectedDoors();
+            room.ActivateWalls();
         }
         else
         {

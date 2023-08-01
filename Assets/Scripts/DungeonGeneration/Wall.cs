@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Door : MonoBehaviour
+public class Wall : MonoBehaviour
 {
-    public enum DoorType{
+   public enum WallType{
 
         left,
         right,
@@ -12,9 +12,11 @@ public class Door : MonoBehaviour
         bottom,
     }
 
-    public DoorType doorType;
-    
-     void OnTriggerEnter(Collider other)
+    public WallType wallType;
+
+
+   
+    void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player"){
             gameObject.SetActive(false);
