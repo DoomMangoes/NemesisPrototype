@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class RoomInfo{
 
@@ -31,6 +32,10 @@ public class RoomController : MonoBehaviour
     public List<Room> loadedRooms = new List<Room>();
 
     bool isLoadingRoom = false;
+
+    bool spawnedBossRoom = false;
+
+    bool updatedRooms = false;
 
     //public bool checkDoors = false;
 
@@ -67,6 +72,19 @@ public class RoomController : MonoBehaviour
         }
 
         if(loadRoomQueue.Count == 0){
+            
+            if(!spawnedBossRoom){
+                StartCoroutine(SpawnBossRoom());
+            } else if(spawnedBossRoom && !updatedRooms){
+
+                foreach(Room room in loadedRooms){
+                    room.RemoveUnconnectedDoors();
+                    room.ActivateWalls();
+                    
+                }
+                updatedRooms = true;
+            }
+
             return;
         }
 
@@ -126,8 +144,8 @@ public class RoomController : MonoBehaviour
 
 
             loadedRooms.Add(room);
-            room.RemoveUnconnectedDoors();
-            room.ActivateWalls();
+            //room.RemoveUnconnectedDoors();
+            //room.ActivateWalls();
         }
         else
         {
@@ -154,6 +172,23 @@ public class RoomController : MonoBehaviour
 
         RoomCameraController.instance.currRoom = room;
         currRoom = room;
+    }
+
+    IEnumerator SpawnBossRoom(){
+        
+        spawnedBossRoom = true;
+        yield return new WaitForSeconds(0.5f);
+
+        if(loadRoomQueue.Count == 0){
+            Room bossRoom = loadedRooms[loadedRooms.Count - 1];
+            Room tempRoom = new Room(bossRoom.X, bossRoom.Z);
+            Destroy(bossRoom.gameObject);
+            var roomToRemove = loadedRooms.Single( r => r.X == tempRoom.X && r.Z == tempRoom.Z);
+            loadedRooms.Remove(roomToRemove);
+
+            LoadRoom("End", tempRoom.X, tempRoom.Z);
+
+        }
     }
     /*
     public void CheckUnusedDoors(){

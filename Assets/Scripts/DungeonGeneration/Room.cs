@@ -4,7 +4,13 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
+
     //Changed Y to Z
+
+    public Room(int x, int z){
+        X = x;
+        Z = z;
+    }
 
     public int Width, Height, X, Z;
 
@@ -17,6 +23,8 @@ public class Room : MonoBehaviour
 
     public Wall leftWall, rightWall, topWall, bottomWall;
     public List<Wall> walls = new List<Wall>();
+
+    private bool updatedDoors = false;
 
     // Start is called before the first frame update
     void Start()
@@ -70,6 +78,18 @@ public class Room : MonoBehaviour
         }
 
         RoomController.instance.RegisterRoom(this);
+    }
+
+    void Update(){
+
+
+        if(name.Contains("End") && !updatedDoors){
+            RemoveUnconnectedDoors();
+            ActivateWalls();
+            updatedDoors = true;
+        }
+
+        
     }
 
     public void RemoveUnconnectedDoors(){
