@@ -7,12 +7,12 @@ public class Room : MonoBehaviour
 
     //Changed Y to Z
 
-    public Room(int x, int z){
+    public Room(float x, float z){
         X = x;
         Z = z;
     }
 
-    public int Width, Height, X, Z;
+    public float Width, Height, X, Z;
 
 
     public Door leftDoor, rightDoor, topDoor, bottomDoor;
@@ -89,7 +89,7 @@ public class Room : MonoBehaviour
             updatedDoors = true;
         }
 
-        
+
     }
 
     public void RemoveUnconnectedDoors(){
