@@ -67,12 +67,13 @@ public class RoomController : MonoBehaviour
         LoadRoom("Empty",1,-1);
         LoadRoom("Empty",2,-1);
 
-        //LoadRoom("Large",1,0);
-
-        //bool tempCheck = CheckLargeRoomSpawnLocation(new Room(1,0));
-
        
-        
+        LoadRoom("Empty",-2,0);
+        LoadRoom("Empty",-1,1);
+        LoadRoom("Empty",-2,1);
+        LoadRoom("Empty",-1,-1);
+        LoadRoom("Empty",-2,-1);
+
     }
 
     void Update() {
@@ -153,27 +154,27 @@ public class RoomController : MonoBehaviour
         //TESTING
         
         if(test == false && loadRoomQueue.Count == 0){
+            /*
+            foreach (var item in loadedRooms)
+                    {
+                        Debug.Log(item.ToString());
+                    }
+            */
+          
+            tempRoom = new Room (-1,0);
+            //Debug.Log("Temp Room: " + tempRoom.ToString());
+            bool tempCheck = CheckLargeRoomSpawnLocation(tempRoom);
         
-        foreach (var item in loadedRooms)
-                {
-                    Debug.Log(item.ToString());
-                }
-        
-        test = true;
-        tempRoom = new Room (1,0);
-        //Debug.Log("Temp Room: " + tempRoom.ToString());
-        bool tempCheck = CheckLargeRoomSpawnLocation(tempRoom);
-      
-        if(tempCheck){
-           StartCoroutine(SpawnLargeRoom(tempRoom));
+            if(tempCheck){
+            StartCoroutine(SpawnLargeRoom(tempRoom));
 
-            foreach (var room in roomsToRemove)
-                {
-                    Debug.Log(room.ToString());
-                }
-        
-        }
-
+                foreach (var room in roomsToRemove)
+                    {
+                        Debug.Log(room.ToString());
+                    }
+            
+            }
+              test = true;
         }
 
         //END TESTING
@@ -335,7 +336,7 @@ public class RoomController : MonoBehaviour
 
         //Check Spawn Right
 
-        if(!test && currentRoom.X > 0){
+        if(test == false && currentRoom.X > 0){
 
             largeRoomSpawnRight = true;
 
@@ -425,6 +426,102 @@ public class RoomController : MonoBehaviour
                         tempRoomList.Add(find);
                     }else if(find == null){
                         Debug.Log("Bottom Right Room Not Exist");
+                        check = false;
+                     
+                    }
+                }
+            }
+            
+        }
+        if(test == false && currentRoom.X < 0){
+            //Check Spawn Left
+            largeRoomSpawnRight = false;
+
+            find = loadedRooms.Find( room => room.X == currentRoom.X && room.Z == currentRoom.Z);
+            tempRoomList.Add(find);
+
+            largeRoomSpawnTop = Random.value >= 0.5f;
+
+           for(int c = 0; c < 2; c++){
+                        //Check Top or Bottom Free Space
+                        if(largeRoomSpawnTop){
+
+                            find = loadedRooms.Find( room => room.X == currentRoom.X && room.Z == currentRoom.Z + 1);
+
+                            if(find){
+                               
+                                Debug.Log("Top Room Free");
+                                check = true;
+                                tempRoomList.Add(find);
+                                break;
+                            }else if(find == null){
+                                Debug.Log("Top Room Does Not Exist");
+                            }
+                            
+                        }else if(largeRoomSpawnTop == false){
+                            
+                            find = loadedRooms.Find( room => room.X == currentRoom.X && room.Z == currentRoom.Z - 1);
+
+                            if(find){
+                                //nearSpawn = find.X == 0 && find.Z == 0;
+                                Debug.Log("Bottom Room Free");
+                                check = true;
+                                tempRoomList.Add(find);
+                                break;
+                            }else if(find == null){
+                                Debug.Log("Bottom Room Does Not Exist");
+                            }
+
+                        }
+
+                    if(find == null && c == 1){
+                        largeRoomSpawnTop = !largeRoomSpawnTop;
+                    }else{
+                        check = false;
+                    }
+                    
+                }
+
+            //Check Left Tiles
+            if(check){
+              
+                find = loadedRooms.Find( room => room.X == currentRoom.X - 1 && room.Z == currentRoom.Z);
+
+                if(find){
+                    Debug.Log("Left Room Free");
+                    check = true;
+                    tempRoomList.Add(find);
+                }else if(find == null){
+                    Debug.Log("Left Room Not Exist");
+                    check = false;
+                   
+                }
+
+                //Find Top Left or Bottom Left Tiles
+                if(largeRoomSpawnTop && check){
+
+                    find = loadedRooms.Find( room => room.X == currentRoom.X - 1 && room.Z == currentRoom.Z + 1);
+
+                    if(find){
+                        Debug.Log("Top Left Room Free");
+                        check = true;
+                        tempRoomList.Add(find);
+                    }else if(find == null){
+                        Debug.Log("Top Left Room Not Exist");
+                        check = false;
+                       
+                    }
+
+                }else if(largeRoomSpawnTop == false && check){
+                    
+                    find = loadedRooms.Find( room => room.X == currentRoom.X - 1 && room.Z == currentRoom.Z - 1);
+
+                    if(find){
+                        Debug.Log("Bottom Left Room Free");
+                        check = true;
+                        tempRoomList.Add(find);
+                    }else if(find == null){
+                        Debug.Log("Bottom Left Room Not Exist");
                         check = false;
                      
                     }
@@ -550,6 +647,18 @@ public class RoomController : MonoBehaviour
         }
            
         LoadRoom("Large", tempRoom.X, tempRoom.Z);
+
+          Debug.Log("Before Clear:");
+        foreach(Room room in roomsToRemove){
+            Debug.Log(room);
+        }
+
+        roomsToRemove.Clear();
+
+          Debug.Log("After Clear:");
+        foreach(Room room in roomsToRemove){
+            Debug.Log(room);
+        }
         /*
         if(largeRoomSpawnTop){
             
