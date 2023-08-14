@@ -44,18 +44,35 @@ public class RoomController : MonoBehaviour
 
     private bool largeRoomSpawn = false;
 
+    private bool test = false;
+    private Room tempRoom;
+
+    private List<Room> roomsToRemove = new List<Room>();
+
     void Awake() {
         instance = this;
     }
 
     void Start(){
-        /*
+        
         LoadRoom("Start",0,0);
-        LoadRoom("Empty",1,0);
         LoadRoom("Empty",-1,0);
         LoadRoom("Empty",0,1);
         LoadRoom("Empty",0,-1);
-        */
+
+        LoadRoom("Empty",1,0);
+        LoadRoom("Empty",2,0);
+        LoadRoom("Empty",1,1);
+        LoadRoom("Empty",2,1);
+        LoadRoom("Empty",1,-1);
+        LoadRoom("Empty",2,-1);
+
+        //LoadRoom("Large",1,0);
+
+        //bool tempCheck = CheckLargeRoomSpawnLocation(new Room(1,0));
+
+       
+        
     }
 
     void Update() {
@@ -86,33 +103,40 @@ public class RoomController : MonoBehaviour
         //Spawn Boss Room And Unique Rooms
         if(loadRoomQueue.Count == 0){
 
-            /*
+        /*            
             if(uniqueRoomSpawn == false){
-                 foreach(Room room in loadedRooms){
 
-                
-                bool largeSpawn = CheckLargeRoomSpawnLocation(room);
-                Debug.Log(largeSpawn);
+                foreach(Room room in loadedRooms){
+
+                    
+                    bool largeSpawn = CheckLargeRoomSpawnLocation(room);
+                    int largeSpawnChance = Random.Range(0,3);
+                    Debug.Log(largeSpawn);
+
+                    if(largeSpawnChance == 1){
+
+                        if(largeSpawn && !largeRoomSpawn){
+                            largeRoomSpawn = true;
+                            StartCoroutine(SpawnLargeRoom(room));
+                            largeRoomSpawn = false;
+                         }
+
+                        room.RemoveUnconnectedDoors();
+                        room.ActivateWalls();
+
+                    }
 
 
-                if(largeSpawn && !largeRoomSpawn){
-                    largeRoomSpawn = true;
-                    StartCoroutine(SpawnLargeRoom(room));
-                    largeRoomSpawn = false;
+                    
                 }
-
-                    room.RemoveUnconnectedDoors();
-                    room.ActivateWalls();
-
-            }
                 uniqueRoomSpawn = true;
                 Debug.Log("Room Spawn Done");
             }
 
-            
         */
-           
-            if(!spawnedBossRoom /*&& uniqueRoomSpawn */){
+        
+        /*
+            if(!spawnedBossRoom){
                 StartCoroutine(SpawnBossRoom());
             } else if(spawnedBossRoom && !updatedRooms){
 
@@ -124,9 +148,35 @@ public class RoomController : MonoBehaviour
                 updatedRooms = true;
             }
 
-          
+        */
                     
+        //TESTING
+        
+        if(test == false && loadRoomQueue.Count == 0){
+        
+        foreach (var item in loadedRooms)
+                {
+                    Debug.Log(item.ToString());
+                }
+        
+        test = true;
+        tempRoom = new Room (1,0);
+        //Debug.Log("Temp Room: " + tempRoom.ToString());
+        bool tempCheck = CheckLargeRoomSpawnLocation(tempRoom);
+      
+        if(tempCheck){
+           StartCoroutine(SpawnLargeRoom(tempRoom));
 
+            foreach (var room in roomsToRemove)
+                {
+                    Debug.Log(room.ToString());
+                }
+        
+        }
+
+        }
+
+        //END TESTING
             return;
         }
 
@@ -170,26 +220,26 @@ public class RoomController : MonoBehaviour
 
         if(!DoesRoomExist(currentLoadRoomData.X, currentLoadRoomData.Z)){
             if(currentLoadRoomData.name == "Large"){
-                float width = 0;
-                float height = 0;
+                float tempX = 0;
+                float tempZ = 0;
 
                  if(largeRoomSpawnRight){
-                        width = -10;
+                        tempX = +10;
                     }else if(largeRoomSpawnRight == false){
-                         width = 10;
+                        tempX = -10;
                     }
                 
                     if(largeRoomSpawnTop){
-                        height = -10;
+                        tempZ = +10;
                     }else if(largeRoomSpawnTop == false){
-                        height = 10;
+                        tempZ = -10;
                     }
         
 
                 room.transform.position = new Vector3( 
-                (currentLoadRoomData.X * 20) + width,
+                (currentLoadRoomData.X * 20) + tempX,
                 0,
-                (currentLoadRoomData.Z * 20) + height
+                (currentLoadRoomData.Z * 20) + tempZ
             );
             }
             else{
@@ -266,17 +316,127 @@ public class RoomController : MonoBehaviour
     private bool CheckLargeRoomSpawnLocation(Room currentRoom){
 
         bool check = false;
-        int i;
         Room find = null;
-        bool nearSpawn = false;
+        bool test = false;
+        List<Room> tempRoomList = new List<Room>();
 
+            
         //Check If Start Room
             Debug.Log("Check Spawn Potential");
+            //Debug.Log(currentRoom.ToString());
             Debug.Log("CurrentRoom X:" + currentRoom.X);
-            Debug.Log("CurrentRoom X:" + currentRoom.Z);
-        bool test = currentRoom.X != 0 && currRoom.Z != 0 ;
-            Debug.Log("Test:" + test);
-        if(currentRoom.X != 0 && currentRoom.Z != 0 ){
+            Debug.Log("CurrentRoom Z:" + currentRoom.Z);
+
+        test = currentRoom.X != 0 && currentRoom.Z != 0 ;
+
+            Debug.Log("Spawn Test:" + test);
+
+        //If not Start Room Check Possible Room Spawn
+
+        //Check Spawn Right
+
+        if(!test && currentRoom.X > 0){
+
+            largeRoomSpawnRight = true;
+
+            //Debug.Log(currentRoom.ToString());
+            find = loadedRooms.Find( room => room.X == currentRoom.X && room.Z == currentRoom.Z);
+            tempRoomList.Add(find);
+
+            largeRoomSpawnTop = Random.value >= 0.5f;
+
+           for(int c = 0; c < 2; c++){
+                        //Check Top or Bottom Free Space
+                        if(largeRoomSpawnTop){
+
+                            find = loadedRooms.Find( room => room.X == currentRoom.X && room.Z == currentRoom.Z + 1);
+
+                            if(find){
+                               
+                                Debug.Log("Top Room Free");
+                                check = true;
+                                tempRoomList.Add(find);
+                                break;
+                            }else if(find == null){
+                                Debug.Log("Top Room Does Not Exist");
+                            }
+                            
+                        }else if(largeRoomSpawnTop == false){
+                            
+                            find = loadedRooms.Find( room => room.X == currentRoom.X && room.Z == currentRoom.Z - 1);
+
+                            if(find){
+                                //nearSpawn = find.X == 0 && find.Z == 0;
+                                Debug.Log("Bottom Room Free");
+                                check = true;
+                                tempRoomList.Add(find);
+                                break;
+                            }else if(find == null){
+                                Debug.Log("Bottom Room Does Not Exist");
+                            }
+
+                        }
+
+                    if(find == null && c == 1){
+                        largeRoomSpawnTop = !largeRoomSpawnTop;
+                    }else{
+                        check = false;
+                    }
+                    
+                }
+
+            //Check Right Tiles
+            if(check){
+              
+                find = loadedRooms.Find( room => room.X == currentRoom.X + 1 && room.Z == currentRoom.Z);
+
+                if(find){
+                    Debug.Log("Right Room Free");
+                    check = true;
+                    tempRoomList.Add(find);
+                }else if(find == null){
+                    Debug.Log("Right Room Not Exist");
+                    check = false;
+                   
+                }
+
+                //Find Top Right or Bottom Right Tiles
+                if(largeRoomSpawnTop && check){
+
+                    find = loadedRooms.Find( room => room.X == currentRoom.X + 1 && room.Z == currentRoom.Z + 1);
+
+                    if(find){
+                        Debug.Log("Top Right Room Free");
+                        check = true;
+                        tempRoomList.Add(find);
+                    }else if(find == null){
+                        Debug.Log("Top Right Room Not Exist");
+                        check = false;
+                       
+                    }
+
+                }else if(largeRoomSpawnTop == false && check){
+                    
+                    find = loadedRooms.Find( room => room.X == currentRoom.X + 1 && room.Z == currentRoom.Z - 1);
+
+                    if(find){
+                        Debug.Log("Bottom Right Room Free");
+                        check = true;
+                        tempRoomList.Add(find);
+                    }else if(find == null){
+                        Debug.Log("Bottom Right Room Not Exist");
+                        check = false;
+                     
+                    }
+                }
+            }
+
+
+        }
+
+
+        /*
+        if(test){
             Debug.Log("Spawn Check Good");
             //Check Top
             find = loadedRooms.Find( room => room.X == currentRoom.X && room.Z == currentRoom.Z + 1);
@@ -356,6 +516,16 @@ public class RoomController : MonoBehaviour
 
         }
 
+        */
+
+        Debug.Log("Check:" + check);
+
+        if(check){
+            foreach(Room room in tempRoomList){
+                roomsToRemove.Add(room);
+            }
+        }
+
         return check;
         
     }
@@ -366,13 +536,21 @@ public class RoomController : MonoBehaviour
 
         Room largeRoom = currentRoom;
         Room tempRoom = new Room(largeRoom.X, largeRoom.Z);
-        Destroy(largeRoom.gameObject);
+        //Destroy(largeRoom.gameObject);
 
-        var roomToRemove = loadedRooms.Single( r => r.X == tempRoom.X && r.Z == tempRoom.Z);
-        loadedRooms.Remove(roomToRemove);
+        //var roomToRemove = loadedRooms.Single( r => r.X == tempRoom.X && r.Z == tempRoom.Z);
+        //loadedRooms.Remove(roomToRemove);
         
+        foreach(Room room in roomsToRemove){
 
+            Destroy(room.gameObject);
+            var roomToRemove = loadedRooms.Single( r => r.X == room.X && r.Z == room.Z);
+            loadedRooms.Remove(roomToRemove);
+
+        }
            
+        LoadRoom("Large", tempRoom.X, tempRoom.Z);
+        /*
         if(largeRoomSpawnTop){
             
         roomToRemove = loadedRooms.Single( r => r.X == tempRoom.X && r.Z == tempRoom.Z + 1);
@@ -399,8 +577,8 @@ public class RoomController : MonoBehaviour
     
         }
 
-        LoadLargeRoom("Large", tempRoom.X, tempRoom.Z);
-        
+        LoadRoom("Large", tempRoom.X, tempRoom.Z);
+        */
     }
     
     public void LoadLargeRoom(string name, float x, float z){
@@ -427,5 +605,18 @@ public class RoomController : MonoBehaviour
 
         loadRoomQueue.Enqueue(newRoomData);
 
+
+        /*
+          if(DoesRoomExist(x,z)){
+            return;
+        }
+
+        RoomInfo newRoomData = new RoomInfo();
+        newRoomData.name = name;
+        newRoomData.X = x;
+        newRoomData.Z = z;
+
+        loadRoomQueue.Enqueue(newRoomData);
+        */
     }
 }
