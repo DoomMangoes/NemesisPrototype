@@ -44,11 +44,20 @@ public class RoomController : MonoBehaviour
 
     private bool largeRoomSpawn = false;
 
-    private bool test = false;
-    private Room tempRoom;
+    
+  
 
     private List<Room> roomsToRemove = new List<Room>();
 
+    //TESTING VARIABLES
+
+    //private bool test = false;
+
+    private List<Room> tempRoomList= new List<Room>();
+
+    private int index = 0;
+
+    private bool tempCheck = false; 
     void Awake() {
         instance = this;
     }
@@ -74,6 +83,8 @@ public class RoomController : MonoBehaviour
         LoadRoom("Empty",-1,-1);
         LoadRoom("Empty",-2,-1);
 
+        tempRoomList.Add(new Room (-1,0));
+        tempRoomList.Add(new Room (1,0));
     }
 
     void Update() {
@@ -153,7 +164,7 @@ public class RoomController : MonoBehaviour
                     
         //TESTING
         
-        if(test == false && loadRoomQueue.Count == 0){
+        if(largeRoomSpawn == false && index < tempRoomList.Count){
             /*
             foreach (var item in loadedRooms)
                     {
@@ -161,21 +172,25 @@ public class RoomController : MonoBehaviour
                     }
             */
           
-            tempRoom = new Room (-1,0);
             //Debug.Log("Temp Room: " + tempRoom.ToString());
-            bool tempCheck = CheckLargeRoomSpawnLocation(tempRoom);
-        
-            if(tempCheck){
-            StartCoroutine(SpawnLargeRoom(tempRoom));
+            tempCheck = CheckLargeRoomSpawnLocation(tempRoomList[index]);
+            largeRoomSpawn = true;
+              //test = true;
+        }
+
+        if(tempCheck && largeRoomSpawn){
+
+            tempCheck = false;
+            
+            StartCoroutine(SpawnLargeRoom(tempRoomList[index]));
 
                 foreach (var room in roomsToRemove)
                     {
                         Debug.Log(room.ToString());
                     }
-            
+
+                Debug.Log(loadRoomQueue.Count.ToString());
             }
-              test = true;
-        }
 
         //END TESTING
             return;
@@ -659,6 +674,9 @@ public class RoomController : MonoBehaviour
         foreach(Room room in roomsToRemove){
             Debug.Log(room);
         }
+
+        largeRoomSpawn = false;
+        index += 1;
         /*
         if(largeRoomSpawnTop){
             
