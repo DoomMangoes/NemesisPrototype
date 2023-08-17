@@ -100,7 +100,7 @@ public class Room : MonoBehaviour
 
                 case Door.DoorType.right:
                     if(GetRight() == null){
-                         ActivatePreviousDoor(door);
+                        ActivatePreviousDoor(door);
                         door.gameObject.SetActive(false);
                         
                     }
@@ -132,17 +132,38 @@ public class Room : MonoBehaviour
 
     public Room GetRight(){
 
+        Room find = null;
         if(RoomController.instance.DoesRoomExist(X + 1 , Z)){
-            return RoomController.instance.FindRoom(X + 1, Z);
-           
-
-        } else {
-            return null;
+           find = RoomController.instance.FindRoom(X + 1, Z);
+        
         }
+        if(find == null && RoomController.instance.DoesRoomExist(X + 1.5f , Z + 0.5f)){
+            find = RoomController.instance.FindRoom(X + 1.5f, Z + 0.5f);
+        }
+        if(find == null && RoomController.instance.DoesRoomExist(X + 1.5f , Z - 0.5f)){
+            find = RoomController.instance.FindRoom(X + 1.5f, Z - 0.5f);
+        }
+      
+      
+        return find;
     }
 
     public Room GetLeft(){
 
+        Room find = null;
+        if(RoomController.instance.DoesRoomExist(X - 1 , Z)){
+           find = RoomController.instance.FindRoom(X - 1, Z);
+        
+        }
+        if(find == null && RoomController.instance.DoesRoomExist(X - 1.5f , Z + 0.5f)){
+            find = RoomController.instance.FindRoom(X - 1.5f, Z + 0.5f);
+        }
+        if(find == null && RoomController.instance.DoesRoomExist(X + 1.5f , Z - 0.5f)){
+            find = RoomController.instance.FindRoom(X - 1.5f, Z - 0.5f);
+        }
+
+        return find;
+        /*
         if(RoomController.instance.DoesRoomExist(X - 1 , Z)){
             return RoomController.instance.FindRoom(X - 1, Z);
            
@@ -150,10 +171,25 @@ public class Room : MonoBehaviour
         } else {
             return null;
         }
+        */
     }
 
     public Room GetTop(){
 
+        Room find = null;
+        if(RoomController.instance.DoesRoomExist(X , Z + 1)){
+           find = RoomController.instance.FindRoom(X, Z + 1);
+        
+        }
+        if(find == null && RoomController.instance.DoesRoomExist(X + 0.5f , Z + 1.5f)){
+            find = RoomController.instance.FindRoom(X + 0.5f, Z + 1.5f);
+        }
+        if(find == null && RoomController.instance.DoesRoomExist(X - 0.5f , Z + 1.5f)){
+            find = RoomController.instance.FindRoom(X - 0.5f, Z + 1.5f);
+        }
+
+        return find;
+        /*
         if(RoomController.instance.DoesRoomExist(X , Z + 1)){
             return RoomController.instance.FindRoom(X, Z + 1);
            
@@ -161,10 +197,25 @@ public class Room : MonoBehaviour
         } else {
             return null;
         }
+        */
     }
 
     public Room GetBottom(){
+        
+        Room find = null;
+        if(RoomController.instance.DoesRoomExist(X , Z - 1)){
+           find = RoomController.instance.FindRoom(X, Z - 1);
+        
+        }
+        if(find == null && RoomController.instance.DoesRoomExist(X + 0.5f , Z - 1.5f)){
+            find = RoomController.instance.FindRoom(X + 0.5f, Z - 1.5f);
+        }
+        if(find == null && RoomController.instance.DoesRoomExist(X - 0.5f , Z - 1.5f)){
+            find = RoomController.instance.FindRoom(X - 0.5f, Z - 1.5f);
+        }
 
+        return find;
+        /*
         if(RoomController.instance.DoesRoomExist(X , Z - 1)){
             return RoomController.instance.FindRoom(X, Z - 1);
            
@@ -172,6 +223,7 @@ public class Room : MonoBehaviour
         } else {
             return null;
         }
+        */
     }
 
     void OnDrawGizmos() {
