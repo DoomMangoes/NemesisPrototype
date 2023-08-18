@@ -224,13 +224,11 @@ public class Room : MonoBehaviour
         if(RoomController.instance.DoesRoomExist(X + 1 , Z)){
            find = RoomController.instance.FindRoom(X + 1, Z);
         
-        }
-        //Normal find Large Door B 
-        if(find == null && RoomController.instance.DoesRoomExist(X + 1.5f , Z + 0.5f)){
+        }else if(find == null && RoomController.instance.DoesRoomExist(X + 1.5f , Z + 0.5f)){
+             //Normal find Large Door B 
             find = RoomController.instance.FindRoom(X + 1.5f, Z + 0.5f);
-        }
-        //Normal find Large Door A 
-        if(find == null && RoomController.instance.DoesRoomExist(X + 1.5f , Z - 0.5f)){
+        }else if(find == null && RoomController.instance.DoesRoomExist(X + 1.5f , Z - 0.5f)){
+            //Normal find Large Door A 
             find = RoomController.instance.FindRoom(X + 1.5f, Z - 0.5f);
         }
 
@@ -244,9 +242,8 @@ public class Room : MonoBehaviour
         //Large Door A Find Normal
         if(find == null && RoomController.instance.DoesRoomExist(X + 1.5f , Z + 0.5f) && door.doorType == Door.DoorType.right){
             find = RoomController.instance.FindRoom(X + 1.5f, Z + 0.5f);
-        }
-        //Large Door B Find Normal
-        if(find == null && RoomController.instance.DoesRoomExist(X + 1.5f , Z - 0.5f) && door.doorType == Door.DoorType.rightB){
+        }else if(find == null && RoomController.instance.DoesRoomExist(X + 1.5f , Z - 0.5f) && door.doorType == Door.DoorType.rightB){
+            //Large Door B Find Normal
             find = RoomController.instance.FindRoom(X + 1.5f, Z - 0.5f);
         }
 
@@ -256,12 +253,12 @@ public class Room : MonoBehaviour
             find = RoomController.instance.FindRoom(X + 2f, Z);
         }
         //Large A Find Large A
-        if(find == null && RoomController.instance.DoesRoomExist(X + 2f , Z + 0.5f)){
-            find = RoomController.instance.FindRoom(X + 2f, Z + 0.5f);
+        if(find == null && RoomController.instance.DoesRoomExist(X + 2f , Z + 1f)){
+            find = RoomController.instance.FindRoom(X + 2f, Z + 1f);
         }
         //Large B Find Large B
-        if(find == null && RoomController.instance.DoesRoomExist(X + 2f , Z - 0.5f)){
-            find = RoomController.instance.FindRoom(X + 2f, Z - 0.5f);
+        if(find == null && RoomController.instance.DoesRoomExist(X + 2f , Z - 1f)){
+            find = RoomController.instance.FindRoom(X + 2f, Z - 1f);
         }
       
         return find;
@@ -280,9 +277,7 @@ public class Room : MonoBehaviour
              if(find == null && X == 2 && Z == 2){
               Debug.Log("Room Checked X:" + (X-1.5f) + " Z:" + (Z+0.5f));
              }
-        }
-        
-        if(find == null && RoomController.instance.DoesRoomExist(X - 1.5f , Z - 0.5f)){
+        }else if(find == null && RoomController.instance.DoesRoomExist(X - 1.5f , Z - 0.5f)){
             find = RoomController.instance.FindRoom(X - 1.5f, Z - 0.5f);
              if(find == null && X == 2 && Z == 2){
             Debug.Log("Room Checked X:" + (X-1.5f) + " Z:" + (Z-0.5f));
@@ -306,9 +301,7 @@ public class Room : MonoBehaviour
         Room find = null;
         if(find == null && RoomController.instance.DoesRoomExist(X - 1.5f , Z + 0.5f) && door.doorType == Door.DoorType.left){
             find = RoomController.instance.FindRoom(X - 1.5f, Z + 0.5f);
-        }
-        //Normal Left Door Find Large Door Right A
-        if(find == null && RoomController.instance.DoesRoomExist(X - 1.5f , Z - 0.5f) && door.doorType == Door.DoorType.leftB){
+        }else if(find == null && RoomController.instance.DoesRoomExist(X - 1.5f , Z - 0.5f) && door.doorType == Door.DoorType.leftB){
             find = RoomController.instance.FindRoom(X - 1.5f, Z - 0.5f);
         }
 
@@ -317,12 +310,12 @@ public class Room : MonoBehaviour
             find = RoomController.instance.FindRoom(X - 2f, Z);
         }
         //Large A Find Large A
-        if(find == null && RoomController.instance.DoesRoomExist(X - 2f , Z + 0.5f)){
-            find = RoomController.instance.FindRoom(X - 2f, Z + 0.5f);
+        if(find == null && RoomController.instance.DoesRoomExist(X - 2f , Z + 1f)){
+            find = RoomController.instance.FindRoom(X - 2f, Z + 1f);
         }
         //Large B Find Large B
-        if(find == null && RoomController.instance.DoesRoomExist(X - 2f , Z - 0.5f)){
-            find = RoomController.instance.FindRoom(X - 2f, Z - 0.5f);
+        if(find == null && RoomController.instance.DoesRoomExist(X - 2f , Z - 1f)){
+            find = RoomController.instance.FindRoom(X - 2f, Z - 1f);
         }
 
         return find;
@@ -338,8 +331,7 @@ public class Room : MonoBehaviour
         }
         if(find == null && RoomController.instance.DoesRoomExist(X + 0.5f , Z + 1.5f)){
             find = RoomController.instance.FindRoom(X + 0.5f, Z + 1.5f);
-        }
-        if(find == null && RoomController.instance.DoesRoomExist(X - 0.5f , Z + 1.5f)){
+        }else if(find == null && RoomController.instance.DoesRoomExist(X - 0.5f , Z + 1.5f)){
             find = RoomController.instance.FindRoom(X - 0.5f, Z + 1.5f);
         }
 
@@ -352,10 +344,9 @@ public class Room : MonoBehaviour
         Room find = null;
         
         if(find == null && RoomController.instance.DoesRoomExist(X - 0.5f , Z + 1.5f) && door.doorType == Door.DoorType.top){
-            find = RoomController.instance.FindRoom(X + 0.5f, Z + 1.5f);
-        }
-        if(find == null && RoomController.instance.DoesRoomExist(X + 0.5f , Z + 1.5f) && door.doorType == Door.DoorType.topB){
             find = RoomController.instance.FindRoom(X - 0.5f, Z + 1.5f);
+        }else if(find == null && RoomController.instance.DoesRoomExist(X + 0.5f , Z + 1.5f) && door.doorType == Door.DoorType.topB){
+            find = RoomController.instance.FindRoom(X + 0.5f, Z + 1.5f);
         }
 
         //Large Find Large
@@ -363,13 +354,13 @@ public class Room : MonoBehaviour
             find = RoomController.instance.FindRoom(X, Z + 2f);
         }
         //Large A Find Large A
-        if(find == null && RoomController.instance.DoesRoomExist(X - 0.5f , Z + 2f)){
-            find = RoomController.instance.FindRoom(X - 0.5f, Z + 2f);
+        if(find == null && RoomController.instance.DoesRoomExist(X - 1f , Z + 2f)){
+            find = RoomController.instance.FindRoom(X - 1f, Z + 2f);
         }
 
         //Large B Find Large B
-        if(find == null && RoomController.instance.DoesRoomExist(X + 0.5f , Z + 2f)){
-            find = RoomController.instance.FindRoom(X + 0.5f, Z + 2f);
+        if(find == null && RoomController.instance.DoesRoomExist(X + 1f , Z + 2f)){
+            find = RoomController.instance.FindRoom(X + 1f, Z + 2f);
         }
 
         return find;
@@ -385,8 +376,7 @@ public class Room : MonoBehaviour
         }
         if(find == null && RoomController.instance.DoesRoomExist(X + 0.5f , Z - 1.5f)){
             find = RoomController.instance.FindRoom(X + 0.5f, Z - 1.5f);
-        }
-        if(find == null && RoomController.instance.DoesRoomExist(X - 0.5f , Z - 1.5f)){
+        }else if(find == null && RoomController.instance.DoesRoomExist(X - 0.5f , Z - 1.5f)){
             find = RoomController.instance.FindRoom(X - 0.5f, Z - 1.5f);
         }
 
@@ -399,10 +389,9 @@ public class Room : MonoBehaviour
         Room find = null;
       
         if(find == null && RoomController.instance.DoesRoomExist(X - 0.5f , Z - 1.5f)&& door.doorType == Door.DoorType.bottom){
-            find = RoomController.instance.FindRoom(X + 0.5f, Z - 1.5f);
-        }
-        if(find == null && RoomController.instance.DoesRoomExist(X + 0.5f , Z - 1.5f)&& door.doorType == Door.DoorType.bottomB){
             find = RoomController.instance.FindRoom(X - 0.5f, Z - 1.5f);
+        }else if(find == null && RoomController.instance.DoesRoomExist(X + 0.5f , Z - 1.5f)&& door.doorType == Door.DoorType.bottomB){
+            find = RoomController.instance.FindRoom(X + 0.5f, Z - 1.5f);
         }
 
         //Large Find Large
@@ -410,12 +399,12 @@ public class Room : MonoBehaviour
             find = RoomController.instance.FindRoom(X, Z - 2f);
         }
         //Large A Find Large A
-        if(find == null && RoomController.instance.DoesRoomExist(X - 0.5f , Z - 2f)){
-            find = RoomController.instance.FindRoom(X - 0.5f, Z - 2f);
+        if(find == null && RoomController.instance.DoesRoomExist(X - 1f , Z - 2f)){
+            find = RoomController.instance.FindRoom(X - 1f, Z - 2f);
         }
         //Large B Find Large B
-        if(find == null && RoomController.instance.DoesRoomExist(X + 0.5f , Z - 2f)){
-            find = RoomController.instance.FindRoom(X + 0.5f, Z - 2f);
+        if(find == null && RoomController.instance.DoesRoomExist(X + 1f , Z - 2f)){
+            find = RoomController.instance.FindRoom(X + 1f, Z - 2f);
         }
 
         return find;
@@ -771,27 +760,27 @@ public class Room : MonoBehaviour
                 // Large Room Walls
 
                 case Wall.WallType.rightB:
-                    if(GetRight() != null){
+                    if(GetLargeRoomRight(rightDoorB) != null){
                         wall.gameObject.SetActive(false);
                        
                     }
                 break;
                 case Wall.WallType.leftB:
-                if(GetLeft() != null){
+                if(GetLargeRoomLeft(leftDoorB) != null){
                          
                         wall.gameObject.SetActive(false);
                        
                     }
                 break;
                 case Wall.WallType.topB:
-                if(GetTop() != null){
+                if(GetLargeRoomTop(topDoorB) != null){
                     
                         wall.gameObject.SetActive(false);
                          
                     }
                 break;
                 case Wall.WallType.bottomB:
-               if(GetBottom() != null){
+               if(GetLargeRoomBottom(bottomDoorB) != null){
                  
                         wall.gameObject.SetActive(false);
                     }
