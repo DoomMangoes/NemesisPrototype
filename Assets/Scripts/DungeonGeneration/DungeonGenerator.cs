@@ -13,11 +13,11 @@ public class DungeonGenerator : MonoBehaviour
     private void Start(){
 
         
-
+        
         dungeonRooms = DungeonCrawlerController.GenerateDungeon(dungeonGenerationData);
 
         SpawnRooms(dungeonRooms);
-
+    
         
     }
 

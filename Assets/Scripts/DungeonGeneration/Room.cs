@@ -17,8 +17,6 @@ public class Room : MonoBehaviour
 
     public Door leftDoor, rightDoor, topDoor, bottomDoor;
 
-   
-
     public List<Door> doors = new List<Door>();
 
     public Wall leftWall, rightWall, topWall, bottomWall;
@@ -124,6 +122,12 @@ public class Room : MonoBehaviour
             updatedDoors = true;
         }
 
+        /*
+        if(name.Contains("Large")){
+            RemoveUnconnectedDoors();
+            ActivateWalls();
+        }
+        */
 
     }
 
@@ -182,28 +186,28 @@ public class Room : MonoBehaviour
                 // Large Room Doors
 
                 case Door.DoorType.rightB:
-                    if(GetRight() == null){
+                    if(GetLargeRoomRight(door) == null){
                         ActivatePreviousDoor(door);
                         door.gameObject.SetActive(false);
                         
                     }
                 break;
                 case Door.DoorType.leftB:
-                if(GetLeft() == null){
+                if(GetLargeRoomLeft(door) == null){
                          ActivatePreviousDoor(door);
                         door.gameObject.SetActive(false);
                        
                     }
                 break;
                 case Door.DoorType.topB:
-                if(GetTop() == null){
+                if(GetLargeRoomTop(door) == null){
                     ActivatePreviousDoor(door);
                         door.gameObject.SetActive(false);
                          
                     }
                 break;
                 case Door.DoorType.bottomB:
-               if(GetBottom() == null){
+               if(GetLargeRoomBottom(door) == null){
                  ActivatePreviousDoor(door);
                         door.gameObject.SetActive(false);
                         
@@ -221,12 +225,28 @@ public class Room : MonoBehaviour
            find = RoomController.instance.FindRoom(X + 1, Z);
         
         }
-        //Normal find Large Door B or Large Door A Find Normal
+        //Normal find Large Door B 
         if(find == null && RoomController.instance.DoesRoomExist(X + 1.5f , Z + 0.5f)){
             find = RoomController.instance.FindRoom(X + 1.5f, Z + 0.5f);
         }
-        //Normal find Large Door A or Large Door B Find Normal
+        //Normal find Large Door A 
         if(find == null && RoomController.instance.DoesRoomExist(X + 1.5f , Z - 0.5f)){
+            find = RoomController.instance.FindRoom(X + 1.5f, Z - 0.5f);
+        }
+
+        return find;
+    }
+
+    public Room GetLargeRoomRight(Door door){
+
+        Room find = null;
+       
+        //Large Door A Find Normal
+        if(find == null && RoomController.instance.DoesRoomExist(X + 1.5f , Z + 0.5f) && door.doorType == Door.DoorType.right){
+            find = RoomController.instance.FindRoom(X + 1.5f, Z + 0.5f);
+        }
+        //Large Door B Find Normal
+        if(find == null && RoomController.instance.DoesRoomExist(X + 1.5f , Z - 0.5f) && door.doorType == Door.DoorType.rightB){
             find = RoomController.instance.FindRoom(X + 1.5f, Z - 0.5f);
         }
 
@@ -244,24 +264,51 @@ public class Room : MonoBehaviour
             find = RoomController.instance.FindRoom(X + 2f, Z - 0.5f);
         }
       
-        if(find == null && X == 0.5f && Z == 1.5f){
-            Debug.Log("----------No Right Room Found!");
-        }
-      
         return find;
     }
 
     public Room GetLeft(){
 
         Room find = null;
+
         if(RoomController.instance.DoesRoomExist(X - 1 , Z)){
            find = RoomController.instance.FindRoom(X - 1, Z);
         }
+
         if(find == null && RoomController.instance.DoesRoomExist(X - 1.5f , Z + 0.5f)){
+            find = RoomController.instance.FindRoom(X - 1.5f, Z + 0.5f);
+             if(find == null && X == 2 && Z == 2){
+              Debug.Log("Room Checked X:" + (X-1.5f) + " Z:" + (Z+0.5f));
+             }
+        }
+        
+        if(find == null && RoomController.instance.DoesRoomExist(X - 1.5f , Z - 0.5f)){
+            find = RoomController.instance.FindRoom(X - 1.5f, Z - 0.5f);
+             if(find == null && X == 2 && Z == 2){
+            Debug.Log("Room Checked X:" + (X-1.5f) + " Z:" + (Z-0.5f));
+             }
+        }
+
+
+        if(find == null && X == 2 && Z == 2){
+            Debug.Log("----------No Left Room Found!");
+            Debug.Log("X:" + X + " Z:" + Z);
+            Debug.Log("X:" + (X-1.5f) + " Z:" + (Z-0.5f));
+            Debug.Log(RoomController.instance.DoesRoomExist(X - 1.5f , Z - 0.5f).ToString());
+        }
+
+        return find;
+        
+    }
+
+    public Room GetLargeRoomLeft(Door door){
+
+        Room find = null;
+        if(find == null && RoomController.instance.DoesRoomExist(X - 1.5f , Z + 0.5f) && door.doorType == Door.DoorType.left){
             find = RoomController.instance.FindRoom(X - 1.5f, Z + 0.5f);
         }
         //Normal Left Door Find Large Door Right A
-        if(find == null && RoomController.instance.DoesRoomExist(X - 1.5f , Z - 0.5f)){
+        if(find == null && RoomController.instance.DoesRoomExist(X - 1.5f , Z - 0.5f) && door.doorType == Door.DoorType.leftB){
             find = RoomController.instance.FindRoom(X - 1.5f, Z - 0.5f);
         }
 
@@ -276,12 +323,6 @@ public class Room : MonoBehaviour
         //Large B Find Large B
         if(find == null && RoomController.instance.DoesRoomExist(X - 2f , Z - 0.5f)){
             find = RoomController.instance.FindRoom(X - 2f, Z - 0.5f);
-        }
-
-        if(find == null && X == 2 && Z == 2){
-            Debug.Log("----------No Left Room Found!");
-            Debug.Log("X:" + X + " Z:" + Z);
-            Debug.Log("X:" + (X-1.5f) + " Z:" + (Z-0.5f));
         }
 
         return find;
@@ -299,6 +340,21 @@ public class Room : MonoBehaviour
             find = RoomController.instance.FindRoom(X + 0.5f, Z + 1.5f);
         }
         if(find == null && RoomController.instance.DoesRoomExist(X - 0.5f , Z + 1.5f)){
+            find = RoomController.instance.FindRoom(X - 0.5f, Z + 1.5f);
+        }
+
+        return find;
+     
+    }
+
+    public Room GetLargeRoomTop(Door door){
+
+        Room find = null;
+        
+        if(find == null && RoomController.instance.DoesRoomExist(X - 0.5f , Z + 1.5f) && door.doorType == Door.DoorType.top){
+            find = RoomController.instance.FindRoom(X + 0.5f, Z + 1.5f);
+        }
+        if(find == null && RoomController.instance.DoesRoomExist(X + 0.5f , Z + 1.5f) && door.doorType == Door.DoorType.topB){
             find = RoomController.instance.FindRoom(X - 0.5f, Z + 1.5f);
         }
 
@@ -334,6 +390,21 @@ public class Room : MonoBehaviour
             find = RoomController.instance.FindRoom(X - 0.5f, Z - 1.5f);
         }
 
+        return find;
+        
+    }
+
+    public Room GetLargeRoomBottom(Door door){
+        
+        Room find = null;
+      
+        if(find == null && RoomController.instance.DoesRoomExist(X - 0.5f , Z - 1.5f)&& door.doorType == Door.DoorType.bottom){
+            find = RoomController.instance.FindRoom(X + 0.5f, Z - 1.5f);
+        }
+        if(find == null && RoomController.instance.DoesRoomExist(X + 0.5f , Z - 1.5f)&& door.doorType == Door.DoorType.bottomB){
+            find = RoomController.instance.FindRoom(X - 0.5f, Z - 1.5f);
+        }
+
         //Large Find Large
         if(find == null && RoomController.instance.DoesRoomExist(X , Z - 2f)){
             find = RoomController.instance.FindRoom(X, Z - 2f);
@@ -358,16 +429,21 @@ public class Room : MonoBehaviour
 
                 case Door.DoorType.right:
                   
-                   if(GetLeft() != null){
+                    if(GetLeft() != null){
                      tempRoom = GetLeft();
                      tempRoom.ReactivateDoors();
-                   }
-                   
+                   }else if(GetLargeRoomLeft(door) != null){
+                     tempRoom = GetLargeRoomLeft(door);
+                     tempRoom.ReactivateDoors();
+                   }                   
                 break;
                 case Door.DoorType.left:
                    
                    if(GetRight() != null){
                      tempRoom = GetRight();
+                     tempRoom.ReactivateDoors();
+                   }else if(GetLargeRoomRight(door) != null){
+                     tempRoom = GetLargeRoomRight(door);
                      tempRoom.ReactivateDoors();
                    }
                 break;
@@ -376,12 +452,18 @@ public class Room : MonoBehaviour
                    if(GetBottom() != null){
                       tempRoom = GetBottom();
                      tempRoom.ReactivateDoors();
+                   }else if(GetLargeRoomBottom(door) != null){
+                      tempRoom = GetLargeRoomBottom(door);
+                     tempRoom.ReactivateDoors();
                    }
                 break;
                 case Door.DoorType.bottom:
                     
                    if(GetTop() != null){
                     tempRoom = GetTop();
+                    tempRoom.ReactivateDoors();
+                   }else if(GetLargeRoomTop(door) != null){
+                    tempRoom = GetLargeRoomTop(door);
                     tempRoom.ReactivateDoors();
                    }
                 break;
@@ -392,6 +474,9 @@ public class Room : MonoBehaviour
                    if(GetLeft() != null){
                      tempRoom = GetLeft();
                      tempRoom.ReactivateDoors();
+                   }else if(GetLargeRoomLeft(door) != null){
+                     tempRoom = GetLargeRoomLeft(door);
+                     tempRoom.ReactivateDoors();
                    }
                    
                 break;
@@ -400,6 +485,9 @@ public class Room : MonoBehaviour
                    if(GetRight() != null){
                      tempRoom = GetRight();
                      tempRoom.ReactivateDoors();
+                   }else if(GetLargeRoomRight(door) != null){
+                     tempRoom = GetLargeRoomRight(door);
+                     tempRoom.ReactivateDoors();
                    }
                 break;
                 case Door.DoorType.topB:
@@ -407,12 +495,18 @@ public class Room : MonoBehaviour
                    if(GetBottom() != null){
                       tempRoom = GetBottom();
                      tempRoom.ReactivateDoors();
+                   }else if(GetLargeRoomBottom(door) != null){
+                      tempRoom = GetLargeRoomBottom(door);
+                     tempRoom.ReactivateDoors();
                    }
                 break;
                 case Door.DoorType.bottomB:
                     
                    if(GetTop() != null){
                     tempRoom = GetTop();
+                    tempRoom.ReactivateDoors();
+                   }else if(GetLargeRoomTop(door) != null){
+                    tempRoom = GetLargeRoomTop(door);
                     tempRoom.ReactivateDoors();
                    }
                 break;
@@ -456,27 +550,27 @@ public class Room : MonoBehaviour
 
                 //Large Room Doors
                 case Door.DoorType.rightB:
-                    if(GetRight() != null){
+                    if(GetLargeRoomRight(door) != null){
                         door.gameObject.SetActive(true);
                        
                     }
                 break;
                 case Door.DoorType.leftB:
-                if(GetLeft() != null){
+                if(GetLargeRoomLeft(door) != null){
                          
                         door.gameObject.SetActive(true);
                        
                     }
                 break;
                 case Door.DoorType.topB:
-                if(GetTop() != null){
+                if(GetLargeRoomTop(door) != null){
                     
                         door.gameObject.SetActive(true);
                          
                     }
                 break;
                 case Door.DoorType.bottomB:
-               if(GetBottom() != null){
+               if(GetLargeRoomBottom(door) != null){
                  
                         door.gameObject.SetActive(true);
                     }
@@ -530,7 +624,7 @@ public class Room : MonoBehaviour
                 // Large Room Walls
 
                 case Wall.WallType.rightB:
-                    if(GetRight() == null){
+                    if(GetLargeRoomRight(rightDoorB) == null){
                         DeactivatePreviousWall(wall);
                         wall.gameObject.SetActive(true);
                        
@@ -540,7 +634,7 @@ public class Room : MonoBehaviour
                     }
                     break;
                 case Wall.WallType.leftB:
-                    if(GetLeft() == null){
+                    if(GetLargeRoomLeft(leftDoorB) == null){
                         DeactivatePreviousWall(wall);
                         wall.gameObject.SetActive(true);
                        
@@ -549,7 +643,7 @@ public class Room : MonoBehaviour
                     }
                     break;
                 case Wall.WallType.topB:
-                    if(GetTop() == null){
+                    if(GetLargeRoomTop(topDoorB) == null){
                         DeactivatePreviousWall(wall);
                         wall.gameObject.SetActive(true);
                     } else{
@@ -557,7 +651,7 @@ public class Room : MonoBehaviour
                     }
                     break;
                 case Wall.WallType.bottomB:
-                    if(GetBottom() == null){
+                    if(GetLargeRoomBottom(bottomDoorB) == null){
                         DeactivatePreviousWall(wall);
                         wall.gameObject.SetActive(true);
                     } else{
@@ -609,30 +703,30 @@ public class Room : MonoBehaviour
 
                 case Wall.WallType.rightB:
                   
-                   if(GetLeft() != null){
-                     tempRoom = GetLeft();
+                   if(GetLargeRoomLeft(leftDoorB) != null){
+                     tempRoom = GetLargeRoomLeft(leftDoorB);
                      tempRoom.DeactivateWalls();
                    }
                    
                 break;
                 case Wall.WallType.leftB:
                    
-                   if(GetRight() != null){
-                     tempRoom = GetRight();
+                   if(GetLargeRoomRight(rightDoorB) != null){
+                     tempRoom = GetLargeRoomRight(rightDoorB);
                      tempRoom.DeactivateWalls();
                    }
                 break;
                 case Wall.WallType.topB:
                
-                   if(GetBottom() != null){
-                      tempRoom = GetBottom();
+                   if(GetLargeRoomBottom(bottomDoorB) != null){
+                      tempRoom = GetLargeRoomBottom(bottomDoorB);
                      tempRoom.DeactivateWalls();
                    }
                 break;
                 case Wall.WallType.bottomB:
                     
-                   if(GetTop() != null){
-                    tempRoom = GetTop();
+                   if(GetLargeRoomTop(topDoorB) != null){
+                    tempRoom = GetLargeRoomTop(topDoorB);
                    tempRoom.DeactivateWalls();
                    }
                 break;
