@@ -10,16 +10,16 @@ public class Wall : MonoBehaviour
         right,
         top,
         bottom,
+        leftB,
+        rightB,
+        topB,
+        bottomB,
+
     }
 
     public WallType wallType;
 
 
    
-    void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "Player"){
-            gameObject.SetActive(false);
-        }
-    }
+   
 }

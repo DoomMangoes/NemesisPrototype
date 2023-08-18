@@ -10,6 +10,11 @@ public class Door : MonoBehaviour
         right,
         top,
         bottom,
+        leftB,
+        rightB,
+        topB,
+        bottomB,
+
     }
 
     public DoorType doorType;

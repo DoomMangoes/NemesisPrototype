@@ -37,8 +37,7 @@ public class DungeonGenerator : MonoBehaviour
 
         }
 
-        //RoomController.instance.checkDoors = true;
-        //RoomController.instance.CheckUnusedDoors();
+        
     }
   
     
