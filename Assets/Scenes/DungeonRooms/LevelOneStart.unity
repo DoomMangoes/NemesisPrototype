@@ -489,6 +489,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1026395779913787802, guid: c97cb28e89a16394d9e76543859a6e5b, type: 3}
+      propertyPath: playerPrefab
+      value: 
+      objectReference: {fileID: 2730543021598904899, guid: 920961f1e99d11148bef75d8ac1bd091, type: 3}
     - target: {fileID: 5636707537947364486, guid: c97cb28e89a16394d9e76543859a6e5b, type: 3}
       propertyPath: m_Name
       value: Room

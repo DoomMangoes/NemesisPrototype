@@ -65,43 +65,7 @@ public class RoomController : MonoBehaviour
     }
 
     void Start(){
-        /*
-        LoadRoom("Start",0,0);
-        LoadRoom("Empty",-1,0);
-        LoadRoom("Empty",0,1);
-        LoadRoom("Empty",0,-1);
-
-        LoadRoom("Empty",1,0);
-        LoadRoom("Empty",2,0);
-        LoadRoom("Empty",1,1);
-        LoadRoom("Empty",2,1);
-        LoadRoom("Empty",1,-1);
-        LoadRoom("Empty",2,-1);
-
        
-        LoadRoom("Empty",-2,0);
-        LoadRoom("Empty",-1,1);
-        LoadRoom("Empty",-2,1);
-        LoadRoom("Empty",-1,-1);
-        LoadRoom("Empty",-2,-1);
-
-        LoadRoom("Empty",-2,2);
-        LoadRoom("Empty",-1,2);
-        LoadRoom("Empty",0,2);
-        LoadRoom("Empty",1,2);
-        LoadRoom("Empty",2,2);
-
-        LoadRoom("Empty",-2,-2);
-        LoadRoom("Empty",-1,-2);
-        LoadRoom("Empty",0,-2);
-        LoadRoom("Empty",1,-2);
-        LoadRoom("Empty",2,-2);
-        
-        tempRoomSpawnList.Add(new Room (0,1));
-        tempRoomSpawnList.Add(new Room (0,-1));
-
-        */
-        
     }
 
     void Update() {
@@ -118,10 +82,6 @@ public class RoomController : MonoBehaviour
         //Update Rooms
         if(loadRoomQueue.Count != 0){
             
-
-            //Debug.Log("Room Update!");
-            
-            //Debug.Log("isLoadingRoom: " + isLoadingRoom);
             UpdateExistingRooms();
             updatedRooms = true;
 
@@ -132,11 +92,12 @@ public class RoomController : MonoBehaviour
         if(loadRoomQueue.Count == 0){
 
         /*
-            if(!spawnedBossRoom){
+            if(!spawnedBossRoom && index == loadedRooms.Count - 1){
                 StartCoroutine(SpawnBossRoom());
             } else if(spawnedBossRoom && !updatedRooms){
 
                 foreach(Room room in loadedRooms){
+                    Debug.Log(room.ToString());
                     room.RemoveUnconnectedDoors();
                     room.ActivateWalls();
                     
@@ -146,48 +107,6 @@ public class RoomController : MonoBehaviour
 
         */
                     
-        //TESTING
-        /*
-        if(largeRoomSpawn == false && tempIndex < tempRoomSpawnList.Count){
-            
-           // foreach (var item in loadedRooms)
-                  //  {
-                  //      Debug.Log(item.ToString());
-                 //   }
-            
-          
-            //Debug.Log("Temp Room: " + tempRoom.ToString());
-            tempCheck = CheckLargeRoomSpawnLocation(tempRoomSpawnList[tempIndex]);
-
-            if(tempCheck){
-                largeRoomSpawn = true;
-            }
-            else{
-                tempIndex +=1;
-            }
-            
-        }
-
-        if(tempCheck && largeRoomSpawn){
-
-            tempCheck = false;
-            
-            StartCoroutine(SpawnLargeRoom(tempRoomSpawnList[tempIndex]));
-
-               // foreach (var room in roomsToRemove)
-               //     {
-                //        Debug.Log(room.ToString());
-              //     }
-
-               // Debug.Log(loadRoomQueue.Count.ToString());
-
-           //updatedRooms = false;
-        }
-        
-        */
-
-        
-        
         if(largeRoomSpawn == false && index < loadedRooms.Count - 1){
           
             if(loadedRooms[index] != null) {
@@ -219,26 +138,6 @@ public class RoomController : MonoBehaviour
                 
         }
 
-        
-        
-        
-        if(tempIndex == tempRoomSpawnList.Count && test == false){
-             test = true;
-
-             UpdateExistingRooms();
-        
-         foreach (var room in loadedRooms)
-                    {
-                        Debug.Log(room.ToString());
-                    }
-
-                Debug.Log(loadedRooms.Count.ToString());
-
-       
-
-        }
-
-        //END TESTING
             return;
         }
 
@@ -343,10 +242,7 @@ public class RoomController : MonoBehaviour
             loadedRooms.Add(room);
 
             UpdateExistingRooms();
-
-            
-            //room.RemoveUnconnectedDoors();
-            //room.ActivateWalls();
+           
         }
         else
         {
@@ -419,12 +315,6 @@ public class RoomController : MonoBehaviour
         
         roomsToRemove.Clear();
 
-        /*
-          Debug.Log("After Clear:");
-        foreach(Room room in roomsToRemove){
-            Debug.Log(room);
-        }
-        */
         largeRoomSpawn = false;
         index += 1;
         
@@ -438,28 +328,19 @@ public class RoomController : MonoBehaviour
         bool test = false;
         List<Room> tempRoomList = new List<Room>();
 
-            
-        //Check If Start Room
-            //Debug.Log("Check Spawn Potential");
-            //Debug.Log(currentRoom.ToString());
-           // Debug.Log("CurrentRoom X:" + currentRoom.X);
-           // Debug.Log("CurrentRoom Z:" + currentRoom.Z);
-
         test = currentRoom.X != 0 && currentRoom.Z != 0 ;
 
             Debug.Log("Spawn Test:" + test);
 
         //If not Start Room Check Possible Room Spawn
 
-        //Check Spawn Right
-
-        if(test == false){
+        if(test == true){
             bool rand = Random.value >= 0.5f;
 
             for(int c = 0; c < 1; c++){
 
                 if(rand){
-                     Debug.Log("Test: Right");
+                 
 
 
                 check = CheckLargeRoomSpawnRight(check, currentRoom, tempRoomList);
@@ -468,7 +349,7 @@ public class RoomController : MonoBehaviour
                     }
                 }
                 if(rand == false){
-                     Debug.Log("Test: Left");
+                  
                 check = CheckLargeRoomSpawnLeft(check, currentRoom, tempRoomList);
                     if(check){
                         break;
@@ -503,7 +384,6 @@ public class RoomController : MonoBehaviour
           largeRoomSpawnRight = true;
           Room find;
 
-            //Debug.Log(currentRoom.ToString());
             find = loadedRooms.Find( room => room.X == currentRoom.X && room.Z == currentRoom.Z);
             tempRoomList.Add(find);
 
@@ -744,13 +624,12 @@ public class RoomController : MonoBehaviour
     
     void UpdateExistingRooms(){
          
-        //Debug.Log("------ROOM UPDATE----------");
-            //Update Rooms
+        
             foreach(Room room in loadedRooms){
 
                     //Debug.Log(room.ToString());
-                    room.RemoveUnconnectedDoors();
-                    room.ActivateWalls();
+                    room.CheckAdjacentRoom();
+
 
             }
 

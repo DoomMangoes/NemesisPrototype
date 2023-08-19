@@ -14,7 +14,6 @@ public class Room : MonoBehaviour
 
     public float Width, Height, X, Z;
 
-
     public Door leftDoor, rightDoor, topDoor, bottomDoor;
 
     public List<Door> doors = new List<Door>();
@@ -29,7 +28,7 @@ public class Room : MonoBehaviour
     public Door leftDoorB, rightDoorB, topDoorB, bottomDoorB;
     public Wall leftWallB, rightWallB, topWallB, bottomWallB;
 
-
+  
     // Start is called before the first frame update
     void Start()
     {
@@ -37,6 +36,7 @@ public class Room : MonoBehaviour
             Debug.Log("Wrong Scene");
             return;
         }
+
 
         Door[] ds = GetComponentsInChildren<Door>();
 
@@ -117,8 +117,8 @@ public class Room : MonoBehaviour
 
 
         if(name.Contains("End") && !updatedDoors){
-            RemoveUnconnectedDoors();
-            ActivateWalls();
+            CheckAdjacentRoom();
+            //ActivateWalls();
             updatedDoors = true;
         }
 
@@ -148,38 +148,70 @@ public class Room : MonoBehaviour
         }
     }
 
-    public void RemoveUnconnectedDoors(){
+    public void CheckAdjacentRoom(){
 
         foreach(Door door in doors){
 
             switch(door.doorType){
 
                 case Door.DoorType.right:
-                    if(GetRight() == null){
-                        ActivatePreviousDoor(door);
+                    if(GetRight() == null && !name.Contains("Large")){
+                        
+                        rightWall.gameObject.SetActive(true);
+                        door.gameObject.SetActive(false);
+                    
+                    }else if(GetLargeRoomRight(rightDoor) == null && name.Contains("Large")){
+                        
+                        rightWall.gameObject.SetActive(true);
                         door.gameObject.SetActive(false);
                         
+                    }
+                    else{
+                        rightWall.gameObject.SetActive(false);
+                        door.gameObject.SetActive(true);
                     }
                 break;
                 case Door.DoorType.left:
-                if(GetLeft() == null){
-                         ActivatePreviousDoor(door);
-                        door.gameObject.SetActive(false);
+                if(GetLeft() == null && !name.Contains("Large")){
+                    leftWall.gameObject.SetActive(true);
+                    door.gameObject.SetActive(false);
                        
-                    }
+                }else if(GetLargeRoomLeft(leftDoor) == null && name.Contains("Large")){
+                        
+                    leftWall.gameObject.SetActive(true);
+                    door.gameObject.SetActive(false);
+                        
+                }else{
+                    leftWall.gameObject.SetActive(false);
+                    door.gameObject.SetActive(true);
+                }
                 break;
                 case Door.DoorType.top:
-                if(GetTop() == null){
-                    ActivatePreviousDoor(door);
-                        door.gameObject.SetActive(false);
+                if(GetTop() == null && !name.Contains("Large")){
+                    topWall.gameObject.SetActive(true);
+                    door.gameObject.SetActive(false);
                          
+                }else if( GetLargeRoomTop(topDoor) == null && name.Contains("Large")){
+                        
+                        topWall.gameObject.SetActive(true);
+                        door.gameObject.SetActive(false);
+                }else{
+                        topWall.gameObject.SetActive(false);
+                        door.gameObject.SetActive(true);
                     }
                 break;
                 case Door.DoorType.bottom:
-               if(GetBottom() == null){
-                 ActivatePreviousDoor(door);
-                        door.gameObject.SetActive(false);
+                if(GetBottom() == null && !name.Contains("Large")){
+                    bottomWall.gameObject.SetActive(true);
+                    door.gameObject.SetActive(false);
                         
+                }else if( GetLargeRoomBottom(bottomDoor) == null && name.Contains("Large")){
+                        
+                        bottomWall.gameObject.SetActive(true);
+                        door.gameObject.SetActive(false);
+                }else{
+                        bottomWall.gameObject.SetActive(false);
+                        door.gameObject.SetActive(true);
                     }
                 break;
 
@@ -187,30 +219,42 @@ public class Room : MonoBehaviour
 
                 case Door.DoorType.rightB:
                     if(GetLargeRoomRight(door) == null){
-                        ActivatePreviousDoor(door);
+                        rightWallB.gameObject.SetActive(true);
                         door.gameObject.SetActive(false);
                         
+                    }else{
+                        rightWallB.gameObject.SetActive(false);
+                        door.gameObject.SetActive(true);
                     }
                 break;
                 case Door.DoorType.leftB:
                 if(GetLargeRoomLeft(door) == null){
-                         ActivatePreviousDoor(door);
+                        leftWallB.gameObject.SetActive(true);
                         door.gameObject.SetActive(false);
                        
+                    }else{
+                        leftWallB.gameObject.SetActive(false);
+                        door.gameObject.SetActive(true);
                     }
                 break;
                 case Door.DoorType.topB:
                 if(GetLargeRoomTop(door) == null){
-                    ActivatePreviousDoor(door);
+                        topWallB.gameObject.SetActive(true);
                         door.gameObject.SetActive(false);
                          
+                    }else{
+                        topWallB.gameObject.SetActive(false);
+                        door.gameObject.SetActive(true);
                     }
                 break;
                 case Door.DoorType.bottomB:
                if(GetLargeRoomBottom(door) == null){
-                 ActivatePreviousDoor(door);
+                        bottomWallB.gameObject.SetActive(true);
                         door.gameObject.SetActive(false);
                         
+                    }else{
+                        bottomWallB.gameObject.SetActive(false);
+                        door.gameObject.SetActive(true);
                     }
                 break;
             }
@@ -253,11 +297,11 @@ public class Room : MonoBehaviour
             find = RoomController.instance.FindRoom(X + 2f, Z);
         }
         //Large A Find Large A
-        if(find == null && RoomController.instance.DoesRoomExist(X + 2f , Z + 1f)){
+        if(find == null && RoomController.instance.DoesRoomExist(X + 2f , Z + 1f) && door.doorType == Door.DoorType.right){
             find = RoomController.instance.FindRoom(X + 2f, Z + 1f);
         }
         //Large B Find Large B
-        if(find == null && RoomController.instance.DoesRoomExist(X + 2f , Z - 1f)){
+        if(find == null && RoomController.instance.DoesRoomExist(X + 2f , Z - 1f) && door.doorType == Door.DoorType.rightB){
             find = RoomController.instance.FindRoom(X + 2f, Z - 1f);
         }
       
@@ -274,23 +318,12 @@ public class Room : MonoBehaviour
 
         if(find == null && RoomController.instance.DoesRoomExist(X - 1.5f , Z + 0.5f)){
             find = RoomController.instance.FindRoom(X - 1.5f, Z + 0.5f);
-             if(find == null && X == 2 && Z == 2){
-              Debug.Log("Room Checked X:" + (X-1.5f) + " Z:" + (Z+0.5f));
-             }
+            
         }else if(find == null && RoomController.instance.DoesRoomExist(X - 1.5f , Z - 0.5f)){
             find = RoomController.instance.FindRoom(X - 1.5f, Z - 0.5f);
-             if(find == null && X == 2 && Z == 2){
-            Debug.Log("Room Checked X:" + (X-1.5f) + " Z:" + (Z-0.5f));
-             }
+            
         }
 
-
-        if(find == null && X == 2 && Z == 2){
-            Debug.Log("----------No Left Room Found!");
-            Debug.Log("X:" + X + " Z:" + Z);
-            Debug.Log("X:" + (X-1.5f) + " Z:" + (Z-0.5f));
-            Debug.Log(RoomController.instance.DoesRoomExist(X - 1.5f , Z - 0.5f).ToString());
-        }
 
         return find;
         
@@ -310,11 +343,11 @@ public class Room : MonoBehaviour
             find = RoomController.instance.FindRoom(X - 2f, Z);
         }
         //Large A Find Large A
-        if(find == null && RoomController.instance.DoesRoomExist(X - 2f , Z + 1f)){
+        if(find == null && RoomController.instance.DoesRoomExist(X - 2f , Z + 1f) && door.doorType == Door.DoorType.left){
             find = RoomController.instance.FindRoom(X - 2f, Z + 1f);
         }
         //Large B Find Large B
-        if(find == null && RoomController.instance.DoesRoomExist(X - 2f , Z - 1f)){
+        if(find == null && RoomController.instance.DoesRoomExist(X - 2f , Z - 1f) && door.doorType == Door.DoorType.leftB){
             find = RoomController.instance.FindRoom(X - 2f, Z - 1f);
         }
 
@@ -354,12 +387,12 @@ public class Room : MonoBehaviour
             find = RoomController.instance.FindRoom(X, Z + 2f);
         }
         //Large A Find Large A
-        if(find == null && RoomController.instance.DoesRoomExist(X - 1f , Z + 2f)){
+        if(find == null && RoomController.instance.DoesRoomExist(X - 1f , Z + 2f) && door.doorType == Door.DoorType.top){
             find = RoomController.instance.FindRoom(X - 1f, Z + 2f);
         }
 
         //Large B Find Large B
-        if(find == null && RoomController.instance.DoesRoomExist(X + 1f , Z + 2f)){
+        if(find == null && RoomController.instance.DoesRoomExist(X + 1f , Z + 2f) && door.doorType == Door.DoorType.topB){
             find = RoomController.instance.FindRoom(X + 1f, Z + 2f);
         }
 
@@ -388,9 +421,9 @@ public class Room : MonoBehaviour
         
         Room find = null;
       
-        if(find == null && RoomController.instance.DoesRoomExist(X - 0.5f , Z - 1.5f)&& door.doorType == Door.DoorType.bottom){
+        if(find == null && RoomController.instance.DoesRoomExist(X - 0.5f , Z - 1.5f) && door.doorType == Door.DoorType.bottom){
             find = RoomController.instance.FindRoom(X - 0.5f, Z - 1.5f);
-        }else if(find == null && RoomController.instance.DoesRoomExist(X + 0.5f , Z - 1.5f)&& door.doorType == Door.DoorType.bottomB){
+        }else if(find == null && RoomController.instance.DoesRoomExist(X + 0.5f , Z - 1.5f) && door.doorType == Door.DoorType.bottomB){
             find = RoomController.instance.FindRoom(X + 0.5f, Z - 1.5f);
         }
 
@@ -399,11 +432,11 @@ public class Room : MonoBehaviour
             find = RoomController.instance.FindRoom(X, Z - 2f);
         }
         //Large A Find Large A
-        if(find == null && RoomController.instance.DoesRoomExist(X - 1f , Z - 2f)){
+        if(find == null && RoomController.instance.DoesRoomExist(X - 1f , Z - 2f) && door.doorType == Door.DoorType.bottom){
             find = RoomController.instance.FindRoom(X - 1f, Z - 2f);
         }
         //Large B Find Large B
-        if(find == null && RoomController.instance.DoesRoomExist(X + 1f , Z - 2f)){
+        if(find == null && RoomController.instance.DoesRoomExist(X + 1f , Z - 2f) && door.doorType == Door.DoorType.bottomB){
             find = RoomController.instance.FindRoom(X + 1f, Z - 2f);
         }
 
@@ -411,381 +444,4 @@ public class Room : MonoBehaviour
         
     }
 
-    void ActivatePreviousDoor(Door door){
-
-        Room tempRoom;
-        switch(door.doorType){
-
-                case Door.DoorType.right:
-                  
-                    if(GetLeft() != null){
-                     tempRoom = GetLeft();
-                     tempRoom.ReactivateDoors();
-                   }else if(GetLargeRoomLeft(door) != null){
-                     tempRoom = GetLargeRoomLeft(door);
-                     tempRoom.ReactivateDoors();
-                   }                   
-                break;
-                case Door.DoorType.left:
-                   
-                   if(GetRight() != null){
-                     tempRoom = GetRight();
-                     tempRoom.ReactivateDoors();
-                   }else if(GetLargeRoomRight(door) != null){
-                     tempRoom = GetLargeRoomRight(door);
-                     tempRoom.ReactivateDoors();
-                   }
-                break;
-                case Door.DoorType.top:
-               
-                   if(GetBottom() != null){
-                      tempRoom = GetBottom();
-                     tempRoom.ReactivateDoors();
-                   }else if(GetLargeRoomBottom(door) != null){
-                      tempRoom = GetLargeRoomBottom(door);
-                     tempRoom.ReactivateDoors();
-                   }
-                break;
-                case Door.DoorType.bottom:
-                    
-                   if(GetTop() != null){
-                    tempRoom = GetTop();
-                    tempRoom.ReactivateDoors();
-                   }else if(GetLargeRoomTop(door) != null){
-                    tempRoom = GetLargeRoomTop(door);
-                    tempRoom.ReactivateDoors();
-                   }
-                break;
-
-                //Large Room Doors
-                case Door.DoorType.rightB:
-                  
-                   if(GetLeft() != null){
-                     tempRoom = GetLeft();
-                     tempRoom.ReactivateDoors();
-                   }else if(GetLargeRoomLeft(door) != null){
-                     tempRoom = GetLargeRoomLeft(door);
-                     tempRoom.ReactivateDoors();
-                   }
-                   
-                break;
-                case Door.DoorType.leftB:
-                   
-                   if(GetRight() != null){
-                     tempRoom = GetRight();
-                     tempRoom.ReactivateDoors();
-                   }else if(GetLargeRoomRight(door) != null){
-                     tempRoom = GetLargeRoomRight(door);
-                     tempRoom.ReactivateDoors();
-                   }
-                break;
-                case Door.DoorType.topB:
-               
-                   if(GetBottom() != null){
-                      tempRoom = GetBottom();
-                     tempRoom.ReactivateDoors();
-                   }else if(GetLargeRoomBottom(door) != null){
-                      tempRoom = GetLargeRoomBottom(door);
-                     tempRoom.ReactivateDoors();
-                   }
-                break;
-                case Door.DoorType.bottomB:
-                    
-                   if(GetTop() != null){
-                    tempRoom = GetTop();
-                    tempRoom.ReactivateDoors();
-                   }else if(GetLargeRoomTop(door) != null){
-                    tempRoom = GetLargeRoomTop(door);
-                    tempRoom.ReactivateDoors();
-                   }
-                break;
-
-        }
-
-    }
-
-    public void ReactivateDoors(){
-
-        foreach(Door door in doors){
-
-            switch(door.doorType){
-
-                case Door.DoorType.right:
-                    if(GetRight() != null){
-                        door.gameObject.SetActive(true);
-                       
-                    }
-                break;
-                case Door.DoorType.left:
-                if(GetLeft() != null){
-                         
-                        door.gameObject.SetActive(true);
-                       
-                    }
-                break;
-                case Door.DoorType.top:
-                if(GetTop() != null){
-                    
-                        door.gameObject.SetActive(true);
-                         
-                    }
-                break;
-                case Door.DoorType.bottom:
-               if(GetBottom() != null){
-                 
-                        door.gameObject.SetActive(true);
-                    }
-                break;
-
-                //Large Room Doors
-                case Door.DoorType.rightB:
-                    if(GetLargeRoomRight(door) != null){
-                        door.gameObject.SetActive(true);
-                       
-                    }
-                break;
-                case Door.DoorType.leftB:
-                if(GetLargeRoomLeft(door) != null){
-                         
-                        door.gameObject.SetActive(true);
-                       
-                    }
-                break;
-                case Door.DoorType.topB:
-                if(GetLargeRoomTop(door) != null){
-                    
-                        door.gameObject.SetActive(true);
-                         
-                    }
-                break;
-                case Door.DoorType.bottomB:
-               if(GetLargeRoomBottom(door) != null){
-                 
-                        door.gameObject.SetActive(true);
-                    }
-                break;
-            }
-        }
-    }
-    
-    public void ActivateWalls(){
-
-        foreach(Wall wall in walls){
-
-            switch(wall.wallType){
-
-                case Wall.WallType.right:
-                    if(GetRight() == null){
-                        DeactivatePreviousWall(wall);
-                        wall.gameObject.SetActive(true);
-                       
-                    }
-                    else{
-                        wall.gameObject.SetActive(false);
-                    }
-                    break;
-                case Wall.WallType.left:
-                    if(GetLeft() == null){
-                        DeactivatePreviousWall(wall);
-                        wall.gameObject.SetActive(true);
-                       
-                    } else{
-                        wall.gameObject.SetActive(false);
-                    }
-                    break;
-                case Wall.WallType.top:
-                    if(GetTop() == null){
-                        DeactivatePreviousWall(wall);
-                        wall.gameObject.SetActive(true);
-                    } else{
-                        wall.gameObject.SetActive(false);
-                    }
-                    break;
-                case Wall.WallType.bottom:
-                    if(GetBottom() == null){
-                        DeactivatePreviousWall(wall);
-                        wall.gameObject.SetActive(true);
-                    } else{
-                        wall.gameObject.SetActive(false);
-                    }
-                    break;
-
-                // Large Room Walls
-
-                case Wall.WallType.rightB:
-                    if(GetLargeRoomRight(rightDoorB) == null){
-                        DeactivatePreviousWall(wall);
-                        wall.gameObject.SetActive(true);
-                       
-                    }
-                    else{
-                        wall.gameObject.SetActive(false);
-                    }
-                    break;
-                case Wall.WallType.leftB:
-                    if(GetLargeRoomLeft(leftDoorB) == null){
-                        DeactivatePreviousWall(wall);
-                        wall.gameObject.SetActive(true);
-                       
-                    } else{
-                        wall.gameObject.SetActive(false);
-                    }
-                    break;
-                case Wall.WallType.topB:
-                    if(GetLargeRoomTop(topDoorB) == null){
-                        DeactivatePreviousWall(wall);
-                        wall.gameObject.SetActive(true);
-                    } else{
-                        wall.gameObject.SetActive(false);
-                    }
-                    break;
-                case Wall.WallType.bottomB:
-                    if(GetLargeRoomBottom(bottomDoorB) == null){
-                        DeactivatePreviousWall(wall);
-                        wall.gameObject.SetActive(true);
-                    } else{
-                        wall.gameObject.SetActive(false);
-                    }
-                    break;
-            }
-        }
-    }
-    
-
-    
-    void DeactivatePreviousWall(Wall wall){
-
-        Room tempRoom;
-        switch(wall.wallType){
-
-                case Wall.WallType.right:
-                  
-                   if(GetLeft() != null){
-                     tempRoom = GetLeft();
-                     tempRoom.DeactivateWalls();
-                   }
-                   
-                break;
-                case Wall.WallType.left:
-                   
-                   if(GetRight() != null){
-                     tempRoom = GetRight();
-                     tempRoom.DeactivateWalls();
-                   }
-                break;
-                case Wall.WallType.top:
-               
-                   if(GetBottom() != null){
-                      tempRoom = GetBottom();
-                     tempRoom.DeactivateWalls();
-                   }
-                break;
-                case Wall.WallType.bottom:
-                    
-                   if(GetTop() != null){
-                    tempRoom = GetTop();
-                   tempRoom.DeactivateWalls();
-                   }
-                break;
-
-                // Large Room Walls
-
-                case Wall.WallType.rightB:
-                  
-                   if(GetLargeRoomLeft(leftDoorB) != null){
-                     tempRoom = GetLargeRoomLeft(leftDoorB);
-                     tempRoom.DeactivateWalls();
-                   }
-                   
-                break;
-                case Wall.WallType.leftB:
-                   
-                   if(GetLargeRoomRight(rightDoorB) != null){
-                     tempRoom = GetLargeRoomRight(rightDoorB);
-                     tempRoom.DeactivateWalls();
-                   }
-                break;
-                case Wall.WallType.topB:
-               
-                   if(GetLargeRoomBottom(bottomDoorB) != null){
-                      tempRoom = GetLargeRoomBottom(bottomDoorB);
-                     tempRoom.DeactivateWalls();
-                   }
-                break;
-                case Wall.WallType.bottomB:
-                    
-                   if(GetLargeRoomTop(topDoorB) != null){
-                    tempRoom = GetLargeRoomTop(topDoorB);
-                   tempRoom.DeactivateWalls();
-                   }
-                break;
-
-        }
-
-    }
-
-    public void DeactivateWalls(){
-
-        foreach(Wall wall in walls){
-
-            switch(wall.wallType){
-
-                case Wall.WallType.right:
-                    if(GetRight() != null){
-                        wall.gameObject.SetActive(false);
-                       
-                    }
-                break;
-                case Wall.WallType.left:
-                if(GetLeft() != null){
-                         
-                        wall.gameObject.SetActive(false);
-                       
-                    }
-                break;
-                case Wall.WallType.top:
-                if(GetTop() != null){
-                    
-                        wall.gameObject.SetActive(false);
-                         
-                    }
-                break;
-                case Wall.WallType.bottom:
-               if(GetBottom() != null){
-                 
-                        wall.gameObject.SetActive(false);
-                    }
-                break;
-
-                // Large Room Walls
-
-                case Wall.WallType.rightB:
-                    if(GetLargeRoomRight(rightDoorB) != null){
-                        wall.gameObject.SetActive(false);
-                       
-                    }
-                break;
-                case Wall.WallType.leftB:
-                if(GetLargeRoomLeft(leftDoorB) != null){
-                         
-                        wall.gameObject.SetActive(false);
-                       
-                    }
-                break;
-                case Wall.WallType.topB:
-                if(GetLargeRoomTop(topDoorB) != null){
-                    
-                        wall.gameObject.SetActive(false);
-                         
-                    }
-                break;
-                case Wall.WallType.bottomB:
-               if(GetLargeRoomBottom(bottomDoorB) != null){
-                 
-                        wall.gameObject.SetActive(false);
-                    }
-                break;
-            }
-        }
-    }
 }

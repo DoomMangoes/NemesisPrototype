@@ -8,24 +8,23 @@ public class DungeonGenerator : MonoBehaviour
 
     private List<Vector2> dungeonRooms;
 
-    //private bool largeRoomSpawnRight;
+    public GameObject playerPrefab;
 
     private void Start(){
 
-        
-        
         dungeonRooms = DungeonCrawlerController.GenerateDungeon(dungeonGenerationData);
 
         SpawnRooms(dungeonRooms);
-    
-        
+
+        Instantiate(playerPrefab, new Vector3(0, 1.5f, 0), Quaternion.identity);
+           
     }
 
 
     private void SpawnRooms(IEnumerable<Vector2> rooms){
 
 
-        RoomController.instance.LoadRoom("Empty", 0f, 0f);
+        RoomController.instance.LoadRoom("Start", 0f, 0f);
 
         //Testing Large Room
         //RoomController.instance.LoadRoom("Large", -0.25f, 0.25f);
