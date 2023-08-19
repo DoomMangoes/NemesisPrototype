@@ -26,9 +26,6 @@ public class DungeonGenerator : MonoBehaviour
 
         RoomController.instance.LoadRoom("Start", 0f, 0f);
 
-        //Testing Large Room
-        //RoomController.instance.LoadRoom("Large", -0.25f, 0.25f);
-
         foreach(Vector2 roomLocation in rooms){
 
          

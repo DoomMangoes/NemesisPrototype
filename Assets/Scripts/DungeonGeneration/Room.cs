@@ -122,13 +122,6 @@ public class Room : MonoBehaviour
             updatedDoors = true;
         }
 
-        /*
-        if(name.Contains("Large")){
-            RemoveUnconnectedDoors();
-            ActivateWalls();
-        }
-        */
-
     }
 
      void OnDrawGizmos() {

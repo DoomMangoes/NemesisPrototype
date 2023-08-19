@@ -46,17 +46,13 @@ public class RoomController : MonoBehaviour
 
     private List<Room> roomsToRemove = new List<Room>();
 
-    //TESTING VARIABLES
-
-    private List<Room> tempRoomSpawnList= new List<Room>();
-
-    private List<Room> roomsToAdd = new List<Room>();
+    private List<Room> roomCandidates= new List<Room>();
 
     private int index = 1;
 
-    private int tempIndex = 0;
-
     private bool tempCheck = false; 
+
+    private Room tempBossRoom = new Room(0,0);
 
     private bool test = false;
 
@@ -89,25 +85,35 @@ public class RoomController : MonoBehaviour
 
 
         //Spawn Boss Room And Unique Rooms
-        if(loadRoomQueue.Count == 0){
 
-        /*
-            if(!spawnedBossRoom && index == loadedRooms.Count - 1){
-                StartCoroutine(SpawnBossRoom());
+       
+        if(loadRoomQueue.Count == 0){
+        
+            
+            if(!spawnedBossRoom && uniqueRoomSpawn){
+                
+            CheckBossRoomSpawn();
+    
+            StartCoroutine(SpawnBossRoom());
+            Debug.Log("BOSS ROOM SPAWNED!");
+
             } else if(spawnedBossRoom && !updatedRooms){
 
-                foreach(Room room in loadedRooms){
-                    Debug.Log(room.ToString());
-                    room.RemoveUnconnectedDoors();
-                    room.ActivateWalls();
+            foreach(Room room in loadedRooms){
+               
+                room.CheckAdjacentRoom();
                     
-                }
-                updatedRooms = true;
+            }
+            updatedRooms = true;
+            }
+        
+            
+            if(index == loadedRooms.Count){
+                uniqueRoomSpawn = true;
             }
 
-        */
-                    
-        if(largeRoomSpawn == false && index < loadedRooms.Count - 1){
+
+            if(largeRoomSpawn == false && index < loadedRooms.Count){
           
             if(loadedRooms[index] != null) {
                 tempCheck = CheckLargeRoomSpawnLocation(loadedRooms[index]);
@@ -121,7 +127,7 @@ public class RoomController : MonoBehaviour
                 index +=1;
             }
             Debug.Log("loadedRooms Index: " + index.ToString());
-        }
+            }
 
         if(tempCheck && largeRoomSpawn){
 
@@ -129,15 +135,10 @@ public class RoomController : MonoBehaviour
             
             StartCoroutine(SpawnLargeRoom(loadedRooms[index]));
 
-                foreach (var room in roomsToRemove)
-                    {
-                        Debug.Log(room.ToString());
-                    }
-
-                Debug.Log(loadRoomQueue.Count.ToString());
+              
                 
-        }
-
+            }
+        
             return;
         }
 
@@ -271,20 +272,237 @@ public class RoomController : MonoBehaviour
         currRoom = room;
     }
 
+    void CheckBossRoomSpawn(){
+
+        
+        float XCoordinate = 0;
+        float ZCoordinate = 0;
+        bool XCondition = false;
+        bool ZCondition = false;
+
+        
+        //Check furthest coordinate and if Boss Room Spawn is atleast 2 tiles away from spawn
+       
+        XCoordinate = CheckFurthestRoomXCoordinate();
+            
+        ZCoordinate = CheckFurthestRoomZCoordinate();
+
+
+            
+        
+        foreach(Room room in loadedRooms){
+
+            if(XCoordinate > 0){
+            XCondition = room.X >= XCoordinate;
+            }else if(XCoordinate < 0){
+            XCondition = room.X <= XCoordinate;
+            }
+
+            if(ZCoordinate > 0){
+                ZCondition = room.Z >= ZCoordinate;
+            }else if(ZCoordinate < 0){
+                ZCondition = room.Z <= ZCoordinate;
+            }
+
+
+            if( XCondition || ZCondition){
+                roomCandidates.Add(room);
+            }
+        }
+
+            tempBossRoom = roomCandidates[Random.Range(0,roomCandidates.Count)];
+            //Debug.Log("Furthest X:" + XCoordinate + " Z:" + ZCoordinate);
+            //Debug.Log("Boss Room Spawn Location:" + tempBossRoom.ToString());
+            roomCandidates.Clear();
+    }
+
+    float CheckFurthestRoomXCoordinate(){
+
+        float furthestX = 0;
+        bool isPositive = Random.value >= 0.5f;
+
+
+        for(int c = 0; c < 2; c++){
+
+            if(isPositive){
+                foreach(Room room in loadedRooms){
+
+                if(room.X > furthestX){
+                    furthestX = room.X;
+                }
+
+                    
+                }
+                if(furthestX > 2){
+                     break;
+                }else{
+                    isPositive = false;
+                }
+            }
+
+               
+
+            if(isPositive == false){
+
+                foreach(Room room in loadedRooms){
+
+                if(room.X < furthestX){
+                    furthestX = room.X;
+                }
+
+                
+
+            }
+                if(furthestX > -2){
+                    break;
+                }else{
+                    isPositive = true;
+                   
+                }
+                
+            }
+
+        }
+       
+        
+
+        return furthestX;
+    }
+
+    float CheckFurthestRoomZCoordinate(){
+
+        float furthestZ = 0;
+        bool isPositive = Random.value >= 0.5f;
+
+
+        for(int c = 0; c < 2; c++){
+
+            if(isPositive){
+                foreach(Room room in loadedRooms){
+
+                if(room.Z > furthestZ){
+                    furthestZ = room.Z;
+                }
+
+                }
+
+                if(furthestZ > 2){
+                    break;
+                }else{
+                    isPositive = false;
+                   
+                }
+            }
+
+                
+
+            if(isPositive == false){
+
+            foreach(Room room in loadedRooms){
+
+                if(room.Z < furthestZ){
+                    furthestZ = room.Z;
+                }
+
+               
+                }
+
+                if(furthestZ < -2){
+                    break;
+                }else{
+
+                    isPositive = true;
+                }
+
+            }
+
+                
+
+        }
+       
+        return furthestZ;
+    }
+
+
+
     IEnumerator SpawnBossRoom(){
         
         spawnedBossRoom = true;
         yield return new WaitForSeconds(0.5f);
 
-        if(loadRoomQueue.Count == 0){
-            Room bossRoom = loadedRooms[loadedRooms.Count - 1];
-            Room tempRoom = new Room(bossRoom.X, bossRoom.Z);
-            Destroy(bossRoom.gameObject);
-            var roomToRemove = loadedRooms.Single( r => r.X == tempRoom.X && r.Z == tempRoom.Z);
-            loadedRooms.Remove(roomToRemove);
 
-            LoadRoom("Large", tempRoom.X, tempRoom.Z);
-            //LoadRoom("End", tempRoom.X, tempRoom.Z);
+
+        if(loadRoomQueue.Count == 0){
+
+            float XIncrement = 0;
+            float ZIncrement = 0;
+
+
+            Room bossRoom = tempBossRoom;
+            Room tempRoom = new Room(bossRoom.X, bossRoom.Z);
+
+            bool rand = Random.value >= 0.5f;
+
+            for(int c = 0; c < 2; c++){
+
+                if(rand){
+
+                    if(tempRoom.X > 0 && !DoesRoomExist(tempRoom.X + 1, tempRoom.Z)){
+                        
+                        XIncrement = 1;
+                        break;
+                    }else if(tempRoom.X < 0 && !DoesRoomExist(tempRoom.X - 1, tempRoom.Z)){
+                        
+                        XIncrement = -1;
+                         break;
+                    }
+
+                }
+                if(rand == false){
+
+                    if(tempRoom.Z > 0 && !DoesRoomExist(tempRoom.X , tempRoom.Z + 1)){
+                        
+                        ZIncrement = 1;
+                        break;
+                    }else if(tempRoom.Z < 0 && !DoesRoomExist(tempRoom.X, tempRoom.Z - 1)){
+                        
+                        ZIncrement = -1;
+                        break;
+                    }
+
+                }
+
+                rand = !rand;
+
+            }
+
+                if(XIncrement != 0){
+                    if(XIncrement > 0){
+                        largeRoomSpawnRight = true;
+                    }
+                    if(XIncrement < 0){
+                        largeRoomSpawnRight = false;
+                    }
+
+                    largeRoomSpawnTop = Random.value >= 0.5f;
+                }
+                if(ZIncrement != 0){
+                    if(ZIncrement > 0){
+                        largeRoomSpawnTop = true;
+                    }
+                    if(ZIncrement < 0){
+                        largeRoomSpawnTop = false;
+                    }
+
+                    largeRoomSpawnRight = Random.value >= 0.5f;
+                }
+
+            
+
+            LoadRoom("End", tempRoom.X + XIncrement, tempRoom.Z + ZIncrement);
+
+            Debug.Log("Boss Room: " + tempRoom.ToString());
+            LoadRoom("Large", tempRoom.X + (XIncrement * 2), tempRoom.Z + (ZIncrement * 2));
 
         }
     }
