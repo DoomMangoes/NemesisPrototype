@@ -58,6 +58,7 @@ public class RoomController : MonoBehaviour
 
     void Awake() {
         instance = this;
+
     }
 
     void Start(){
@@ -105,6 +106,8 @@ public class RoomController : MonoBehaviour
                     
             }
             updatedRooms = true;
+
+            
             }
         
             
@@ -201,9 +204,9 @@ public class RoomController : MonoBehaviour
         
 
                 room.transform.position = new Vector3( 
-                (currentLoadRoomData.X * 20) + (tempX * 20),
+                (currentLoadRoomData.X * (room.Width / 2)) + (tempX * (room.Width / 2)),
                 0,
-                (currentLoadRoomData.Z * 20) + (tempZ * 20)
+                (currentLoadRoomData.Z * (room.Height / 2)) + (tempZ * (room.Height / 2))
                 );
                 
 
@@ -233,12 +236,12 @@ public class RoomController : MonoBehaviour
            
 
             isLoadingRoom = false;
-
+            /*
             if(loadedRooms.Count == 0){
 
                 RoomCameraController.instance.currRoom = room;
             }
-
+            */
 
             loadedRooms.Add(room);
 

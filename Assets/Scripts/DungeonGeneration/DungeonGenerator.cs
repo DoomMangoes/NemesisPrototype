@@ -10,13 +10,16 @@ public class DungeonGenerator : MonoBehaviour
 
     public GameObject playerPrefab;
 
+    public GameObject player;
+
     private void Start(){
 
         dungeonRooms = DungeonCrawlerController.GenerateDungeon(dungeonGenerationData);
 
         SpawnRooms(dungeonRooms);
 
-        Instantiate(playerPrefab, new Vector3(0, 1.5f, 0), Quaternion.identity);
+        player = Instantiate(playerPrefab, new Vector3(0, 1.5f, 0), Quaternion.identity);
+        CamFollow.instance.target = player.transform;
            
     }
 

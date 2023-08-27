@@ -4,13 +4,17 @@ using UnityEngine;
 
 public class CamFollow : MonoBehaviour
 {
+
+    public static CamFollow instance;
+
     private Vector3 offSet;
-    [SerializeField] private Transform target;
+    public Transform target;
     [SerializeField] private float smoothTime;
     private Vector3 currentVelocity = Vector3.zero;
 
     private void Awake()
     {
+        instance = this;
         offSet = transform.position - target.position;
     }
 

@@ -135,10 +135,12 @@ public class Room : MonoBehaviour
     }
 
     void OnTriggerEnter(Collider other) {
-        
+        /*
         if(other.tag == "Player"){
             RoomController.instance.OnPlayerEnterRoom(this);
         }
+
+        */
     }
 
     public void CheckAdjacentRoom(){
