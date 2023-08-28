@@ -524,6 +524,7 @@ MonoBehaviour:
   rightWallB: {fileID: 0}
   topWallB: {fileID: 0}
   bottomWallB: {fileID: 0}
+  roomFloor: {fileID: 6626419171661141816}
 --- !u!65 &5349765854817135615
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -774,7 +775,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6626419171661141816}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1, y: 0, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

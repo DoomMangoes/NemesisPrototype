@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Room : MonoBehaviour
 {
-
+   
     //Changed Y to Z
 
     public Room(float x, float z){
@@ -28,7 +28,31 @@ public class Room : MonoBehaviour
     public Door leftDoorB, rightDoorB, topDoorB, bottomDoorB;
     public Wall leftWallB, rightWallB, topWallB, bottomWallB;
 
+    [SerializeField]
+    public GameObject roomFloor;
   
+    void Awake(){
+       
+        int rand = Random.Range(0,4);
+        float randRotateY = rand * 90;
+
+        roomFloor.transform.Rotate(0f,randRotateY,0f);
+
+        switch(rand){
+
+            case 1:
+                roomFloor.transform.position = new Vector3(-1f,0f,-1f);
+                break;
+            case 2:
+                roomFloor.transform.position = new Vector3(-1f,0f,1f);
+                break;
+            case 3:
+                roomFloor.transform.position = new Vector3(1f,0f,1f);
+                break;
+        }
+        
+    }
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +60,8 @@ public class Room : MonoBehaviour
             Debug.Log("Wrong Scene");
             return;
         }
+
+
 
 
         Door[] ds = GetComponentsInChildren<Door>();
