@@ -30,6 +30,9 @@ public class Room : MonoBehaviour
 
     [SerializeField]
     public GameObject roomFloor;
+
+    [SerializeField]
+    public GameObject floor1;
   
     void Awake(){
        
@@ -37,17 +40,21 @@ public class Room : MonoBehaviour
         float randRotateY = rand * 90;
 
         roomFloor.transform.Rotate(0f,randRotateY,0f);
+        floor1.transform.Rotate(0f,randRotateY,0f);
 
         switch(rand){
 
             case 1:
                 roomFloor.transform.position = new Vector3(-1f,0f,-1f);
+                floor1.transform.position = new Vector3(-1f,0f,-1f);
                 break;
             case 2:
                 roomFloor.transform.position = new Vector3(-1f,0f,1f);
+                floor1.transform.position = new Vector3(-1f,0f,1f);
                 break;
             case 3:
                 roomFloor.transform.position = new Vector3(1f,0f,1f);
+                floor1.transform.position = new Vector3(1f,0f,1f);
                 break;
         }
         

@@ -669,6 +669,7 @@ MonoBehaviour:
   topWallB: {fileID: 0}
   bottomWallB: {fileID: 0}
   roomFloor: {fileID: 6626419171661141816}
+  floor1: {fileID: 2191863366623557715}
 --- !u!65 &5349765854817135615
 BoxCollider:
   m_ObjectHideFlags: 0
