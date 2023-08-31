@@ -10,7 +10,6 @@ public class RoomInfo{
 
     public float X;
 
-
     //Changed to Z;
     public float Z;
 
@@ -188,7 +187,7 @@ public class RoomController : MonoBehaviour
             float tempZ = 0;
 
 
-            if(currentLoadRoomData.name == "Large"){
+            if(currentLoadRoomData.name == "Large" ||  currentLoadRoomData.name == "Boss"){
                
                  if(largeRoomSpawnRight){
                         tempX = 0.5f;
@@ -220,7 +219,7 @@ public class RoomController : MonoBehaviour
             );
             }
             
-            if(currentLoadRoomData.name == "Large"){
+            if(currentLoadRoomData.name == "Large" || currentLoadRoomData.name == "Boss"){
 
                 room.X = currentLoadRoomData.X + tempX;
                 room.Z = currentLoadRoomData.Z + tempZ;
@@ -505,7 +504,7 @@ public class RoomController : MonoBehaviour
             LoadRoom("End", tempRoom.X + XIncrement, tempRoom.Z + ZIncrement);
 
             Debug.Log("Boss Room: " + tempRoom.ToString());
-            LoadRoom("Large", tempRoom.X + (XIncrement * 2), tempRoom.Z + (ZIncrement * 2));
+            LoadRoom("Boss", tempRoom.X + (XIncrement * 2), tempRoom.Z + (ZIncrement * 2));
 
         }
     }

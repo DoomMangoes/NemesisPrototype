@@ -176,12 +176,12 @@ public class Room : MonoBehaviour
             switch(door.doorType){
 
                 case Door.DoorType.right:
-                    if(GetRight() == null && !name.Contains("Large")){
+                    if(GetRight() == null && !name.Contains("Large") && !name.Contains("Boss")){
                         
                         rightWall.gameObject.SetActive(true);
                         door.gameObject.SetActive(false);
                     
-                    }else if(GetLargeRoomRight(rightDoor) == null && name.Contains("Large")){
+                    }else if(GetLargeRoomRight(rightDoor) == null && (name.Contains("Large") || name.Contains("Boss"))){
                         
                         rightWall.gameObject.SetActive(true);
                         door.gameObject.SetActive(false);
@@ -193,11 +193,11 @@ public class Room : MonoBehaviour
                     }
                 break;
                 case Door.DoorType.left:
-                if(GetLeft() == null && !name.Contains("Large")){
+                if(GetLeft() == null && !name.Contains("Large") && !name.Contains("Boss")){
                     leftWall.gameObject.SetActive(true);
                     door.gameObject.SetActive(false);
                        
-                }else if(GetLargeRoomLeft(leftDoor) == null && name.Contains("Large")){
+                }else if(GetLargeRoomLeft(leftDoor) == null && (name.Contains("Large") || name.Contains("Boss"))){
                         
                     leftWall.gameObject.SetActive(true);
                     door.gameObject.SetActive(false);
@@ -208,11 +208,11 @@ public class Room : MonoBehaviour
                 }
                 break;
                 case Door.DoorType.top:
-                if(GetTop() == null && !name.Contains("Large")){
+                if(GetTop() == null && !name.Contains("Large") && !name.Contains("Boss")){
                     topWall.gameObject.SetActive(true);
                     door.gameObject.SetActive(false);
                          
-                }else if( GetLargeRoomTop(topDoor) == null && name.Contains("Large")){
+                }else if( GetLargeRoomTop(topDoor) == null && (name.Contains("Large") || name.Contains("Boss"))){
                         
                         topWall.gameObject.SetActive(true);
                         door.gameObject.SetActive(false);
@@ -222,11 +222,11 @@ public class Room : MonoBehaviour
                     }
                 break;
                 case Door.DoorType.bottom:
-                if(GetBottom() == null && !name.Contains("Large")){
+                if(GetBottom() == null && !name.Contains("Large") && !name.Contains("Boss")){
                     bottomWall.gameObject.SetActive(true);
                     door.gameObject.SetActive(false);
                         
-                }else if( GetLargeRoomBottom(bottomDoor) == null && name.Contains("Large")){
+                }else if( GetLargeRoomBottom(bottomDoor) == null && (name.Contains("Large") || name.Contains("Boss"))){
                         
                         bottomWall.gameObject.SetActive(true);
                         door.gameObject.SetActive(false);
