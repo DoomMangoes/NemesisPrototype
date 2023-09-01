@@ -18,23 +18,23 @@ public enum Direction {
 
 public class DungeonCrawlerController : MonoBehaviour
 {
-    public static List<Vector2Int> positionsVisited = new List<Vector2Int>();
+    public static List<Vector2> positionsVisited = new List<Vector2>();
 
-    private static readonly Dictionary<Direction, Vector2Int> directionMovementMap = new Dictionary<Direction, Vector2Int>{
+    private static readonly Dictionary<Direction, Vector2> directionMovementMap = new Dictionary<Direction, Vector2>{
         
-        {Direction.up, Vector2Int.up},
-        {Direction.left, Vector2Int.left},
-        {Direction.down, Vector2Int.down},
-        {Direction.right, Vector2Int.right}
+        {Direction.up, Vector2.up},
+        {Direction.left, Vector2.left},
+        {Direction.down, Vector2.down},
+        {Direction.right, Vector2.right}
     };
 
-    public static List<Vector2Int> GenerateDungeon(DungeonGenerationData dungeonData){
+    public static List<Vector2> GenerateDungeon(DungeonGenerationData dungeonData){
 
         List<DungeonCrawler> dungeonCrawlers = new List<DungeonCrawler>();
 
         for(int i = 0; i< dungeonData.numberOfCrawlers; i++){
 
-            dungeonCrawlers.Add(new DungeonCrawler(Vector2Int.zero));
+            dungeonCrawlers.Add(new DungeonCrawler(Vector2.zero));
         }
 
         int iterations = Random.Range(dungeonData.iterationMin, dungeonData.iterationMax);
@@ -42,7 +42,7 @@ public class DungeonCrawlerController : MonoBehaviour
         for(int i = 0; i < iterations; i++){
 
             foreach(DungeonCrawler dungeonCrawler in dungeonCrawlers){
-                Vector2Int newPos = dungeonCrawler.Move(directionMovementMap);
+                Vector2 newPos = dungeonCrawler.Move(directionMovementMap);
                 positionsVisited.Add(newPos);
             }
         }

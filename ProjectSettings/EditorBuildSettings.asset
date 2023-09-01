@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/DungeonRooms/LevelOneStart.unity
     guid: 3b6a6c9237c8786488eebb72b2f43e47
+  - enabled: 1
+    path: Assets/Scenes/DungeonRooms/LevelOneLarge.unity
+    guid: 6cc997073e1ad1244853a8e7470210a3
+  - enabled: 1
+    path: Assets/Scenes/DungeonRooms/LevelOneBoss.unity
+    guid: ab044abed6d4ed448b1215c72e61ca9c
   m_configObjects: {}
