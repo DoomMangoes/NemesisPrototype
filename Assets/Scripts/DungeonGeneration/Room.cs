@@ -46,15 +46,15 @@ public class Room : MonoBehaviour
 
             case 1:
                 roomFloor.transform.position = new Vector3(-1f,0f,-1f);
-                floor1.transform.position = new Vector3(-1f,0f,-1f);
+                //floor1.transform.position = new Vector3(-1f,0f,-1f);
                 break;
             case 2:
                 roomFloor.transform.position = new Vector3(-1f,0f,1f);
-                floor1.transform.position = new Vector3(-1f,0f,1f);
+                //floor1.transform.position = new Vector3(-1f,0f,1f);
                 break;
             case 3:
                 roomFloor.transform.position = new Vector3(1f,0f,1f);
-                floor1.transform.position = new Vector3(1f,0f,1f);
+                //floor1.transform.position = new Vector3(1f,0f,1f);
                 break;
         }
         
