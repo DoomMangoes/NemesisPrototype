@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    public enum DoorType{
+
+        left,
+        right,
+        top,
+        bottom,
+        leftB,
+        rightB,
+        topB,
+        bottomB,
+
     }
 
-    // Update is called once per frame
-    void Update()
+    public DoorType doorType;
+    
+     void OnTriggerEnter(Collider other)
     {
-        
+        if(other.tag == "Player"){
+            gameObject.SetActive(false);
+        }
     }
 }

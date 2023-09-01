@@ -6,15 +6,24 @@ public class PlayerController : MonoBehaviour
 {
 
     [SerializeField] private Rigidbody _instance;
-    [SerializeField] private float _speed = 5;
-    [SerializeField] private float _turnSpeed = 360;
+    [SerializeField] private float _speed = 5f;
+    [SerializeField] private float _turnSpeed = 360f;
 
     private Vector3 _input;
+    public Animator anim;
+
+    [SerializeField] private AudioSource SwordSlashAudio;
 
     void Update(){
 
         GatherInput();
         Look();
+
+        if (Input.GetKeyDown(KeyCode.Mouse0))
+        {
+            Attack();
+        }
+
     }
 
     void FixedUpdate() {
@@ -51,7 +60,25 @@ public class PlayerController : MonoBehaviour
 
     void Move(){
         _instance.MovePosition(transform.position + (transform.forward * _input.magnitude) * _speed * Time.deltaTime);
+
+        float speed = _input.magnitude; // Calculate the magnitude of the movement input
+        anim.SetFloat("Speed", speed); // Update the "Speed" animation parameter
     }
 
+    private void Attack()
+    {
+        //attack animation
+        SwordSlashAudio.Play();
+        anim.SetTrigger("Attack 1");
+        
 
+    }
+
+    /*
+    void OnCollisionEnter(Collision other)
+    {
+        _input = Vector3.zero;
+        _instance.velocity = Vector3.zero;
+    }
+    */
 }
