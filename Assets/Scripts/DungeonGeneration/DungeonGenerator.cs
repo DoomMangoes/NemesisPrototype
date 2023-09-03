@@ -10,7 +10,7 @@ public class DungeonGenerator : MonoBehaviour
 
     public GameObject playerPrefab;
 
-    public GameObject player;
+    private GameObject player;
 
     private void Start(){
 
