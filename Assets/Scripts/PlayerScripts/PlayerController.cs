@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,10 +11,20 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float _turnSpeed = 360f;
 
     private Vector3 _input;
-    public Animator anim;
+
+    public Animator myAnim;
+    public bool isAttacking = false;
+    public static PlayerController instance;
+    public VisualEffect swordSlashVFX; // Reference to the VFX component
+    public VisualEffect swordSlashVFX2;
+    public VisualEffect swordSlashVFX3;
 
     [SerializeField] private AudioSource SwordSlashAudio;
 
+    private void Awake()
+    {
+        instance = this;
+    }
     void Update(){
 
         GatherInput();
@@ -62,17 +73,33 @@ public class PlayerController : MonoBehaviour
         _instance.MovePosition(transform.position + (transform.forward * _input.magnitude) * _speed * Time.deltaTime);
 
         float speed = _input.magnitude; // Calculate the magnitude of the movement input
-        anim.SetFloat("Speed", speed); // Update the "Speed" animation parameter
+        //anim.SetFloat("Speed", speed); // Update the "Speed" animation parameter
     }
 
-    private void Attack()
+    void Attack()
     {
-        //attack animation
-        SwordSlashAudio.Play();
-        anim.SetTrigger("Attack 1");
-        
+        if (Input.GetMouseButtonDown(0) && !isAttacking)
+        {
+            isAttacking = true;
 
+            // Play the SwordSlashOne VFX
+            //if (swordSlashVFX != null)
+            // {
+            //    swordSlashVFX.Play();
+            // }
+        }
     }
+
+    // private void Attack()
+    //{
+    //attack animation
+    //  SwordSlashAudio.Play();
+    //anim.SetTrigger("Attack 1");
+
+
+    //}
+
+
 
     /*
     void OnCollisionEnter(Collision other)

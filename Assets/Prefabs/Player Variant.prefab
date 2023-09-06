@@ -14,15 +14,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7fa01da1ac408954a92c6e07af96a04d, type: 3}
       propertyPath: m_LocalScale.x
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7fa01da1ac408954a92c6e07af96a04d, type: 3}
       propertyPath: m_LocalScale.y
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7fa01da1ac408954a92c6e07af96a04d, type: 3}
       propertyPath: m_LocalScale.z
-      value: 1
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7fa01da1ac408954a92c6e07af96a04d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -196,7 +196,11 @@ MonoBehaviour:
   _instance: {fileID: 1501906606831394078}
   _speed: 5
   _turnSpeed: 360
-  anim: {fileID: 3490628043238102070}
+  myAnim: {fileID: 0}
+  isAttacking: 0
+  swordSlashVFX: {fileID: 0}
+  swordSlashVFX2: {fileID: 0}
+  swordSlashVFX3: {fileID: 0}
   SwordSlashAudio: {fileID: 6036440088854914629}
 --- !u!95 &3490628043238102070
 Animator:
