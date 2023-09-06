@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.3731193, g: 0.38073996, b: 0.35872698, a: 1}
+  m_IndirectSpecularColor: {r: 0.37311953, g: 0.38074014, b: 0.3587274, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -104,7 +104,7 @@ NavMeshSettings:
   serializedVersion: 2
   m_ObjectHideFlags: 0
   m_BuildSettings:
-    serializedVersion: 3
+    serializedVersion: 2
     agentTypeID: 0
     agentRadius: 0.5
     agentHeight: 2
@@ -117,7 +117,7 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualTileSize: 0
     tileSize: 256
-    buildHeightMesh: 0
+    accuratePlacement: 0
     maxJobWorkers: 0
     preserveTilesOutsideBounds: 0
     debug:
@@ -128,7 +128,6 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 3
     m_TransformParent: {fileID: 1529128324}
     m_Modifications:
     - target: {fileID: -8679921383154817045, guid: 76b39dc4b5f064149a59578f951c01f2, type: 3}
@@ -192,21 +191,7 @@ PrefabInstance:
       value: coinGold
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 76b39dc4b5f064149a59578f951c01f2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 254564905}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 76b39dc4b5f064149a59578f951c01f2, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 254564904}
   m_SourcePrefab: {fileID: 100100000, guid: 76b39dc4b5f064149a59578f951c01f2, type: 3}
---- !u!4 &254564902 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 76b39dc4b5f064149a59578f951c01f2, type: 3}
-  m_PrefabInstance: {fileID: 254564901}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &254564903 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 76b39dc4b5f064149a59578f951c01f2, type: 3}
@@ -220,18 +205,10 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 254564903}
   m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
   m_IsTrigger: 1
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 0.34641027, y: 0.39999998, z: 0.10000002}
+  serializedVersion: 2
+  m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0.19999999, z: 0}
 --- !u!114 &254564905
 MonoBehaviour:
@@ -250,7 +227,6 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 5636707537947364486, guid: 0444e837c535225418370780f787de00, type: 3}
@@ -302,15 +278,43 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 6839388950611385390, guid: 0444e837c535225418370780f787de00, type: 3}
-      insertIndex: 8
-      addedObject: {fileID: 254564902}
-    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0444e837c535225418370780f787de00, type: 3}
 --- !u!4 &1529128324 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6839388950611385390, guid: 0444e837c535225418370780f787de00, type: 3}
   m_PrefabInstance: {fileID: 1529128323}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1529128325 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5636707537947364486, guid: 0444e837c535225418370780f787de00, type: 3}
+  m_PrefabInstance: {fileID: 1529128323}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1529128326
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1529128325}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a5ac11cc976e418e8d13136b07e1f52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_AgentTypeID: 0
+  m_CollectObjects: 0
+  m_Size: {x: 10, y: 10, z: 10}
+  m_Center: {x: 0, y: 2, z: 0}
+  m_LayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_UseGeometry: 0
+  m_DefaultArea: 0
+  m_IgnoreNavMeshAgent: 1
+  m_IgnoreNavMeshObstacle: 1
+  m_OverrideTileSize: 0
+  m_TileSize: 256
+  m_OverrideVoxelSize: 0
+  m_VoxelSize: 0.16666667
+  m_BuildHeightMesh: 0
+  m_NavMeshData: {fileID: 23800000, guid: 2c3d09d35b8c91045a297842c4caf24f, type: 2}
