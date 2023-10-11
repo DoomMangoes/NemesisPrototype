@@ -4,12 +4,33 @@ using UnityEngine;
 
 public class AttributesManager : MonoBehaviour
 {
-    public int health;
+    public int maxHealth = 100;
+    public int currentHealth;
     public int attack;
 
-    public void TakeDamage(int amount)
+    public HealthBar healthBar;
+
+    private void Start()
     {
-        health -= amount;
+        currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth); 
+    }
+
+    public void TakeDamage(int damageValue)
+    {
+        currentHealth -= damageValue;
+
+        healthBar.SetHealth(currentHealth);
+
+
+    }
+
+    private void Update() 
+    {
+        if (Input.GetKeyDown(KeyCode.Space)) 
+        {
+            TakeDamage(20);
+        }
     }
 
     public void DealDamageOne(GameObject target)
