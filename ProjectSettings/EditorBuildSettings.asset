@@ -6,6 +6,12 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Scenes/Menu.unity
+    guid: ba3f03d6c7c9f7a4eb55536f81f21725
+  - enabled: 1
+    path: Assets/Scenes/LevelOne.unity
+    guid: 0871baa3e3432bd4b81a1a941fd66179
+  - enabled: 1
     path: Assets/Scenes/DungeonRooms/LevelOneEmpty.unity
     guid: 6bfaa1f7906cbec4484d9ef474363919
   - enabled: 1
@@ -21,3 +27,4 @@ EditorBuildSettings:
     path: Assets/Scenes/DungeonRooms/LevelOneBoss.unity
     guid: ab044abed6d4ed448b1215c72e61ca9c
   m_configObjects: {}
+  m_UseUCBPForAssetBundles: 0
