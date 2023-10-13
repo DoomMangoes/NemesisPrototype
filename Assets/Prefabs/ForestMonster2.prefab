@@ -158,7 +158,7 @@ RectTransform:
   m_Father: {fileID: 8643251377615661950}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 5.0025015, y: 0}
   m_SizeDelta: {x: 19.994997, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -399,15 +399,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 79bb0491469815f469756c3e00030c28, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.3376503
+      value: -1.0187345
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 79bb0491469815f469756c3e00030c28, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.0750265
+      value: 1.561
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 79bb0491469815f469756c3e00030c28, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 3.749181
+      value: -2.761834
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 79bb0491469815f469756c3e00030c28, type: 3}
       propertyPath: m_LocalRotation.w
@@ -441,6 +441,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: ForestMonster2
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 79bb0491469815f469756c3e00030c28, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects:
@@ -457,6 +461,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 79bb0491469815f469756c3e00030c28, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1834468695629239788}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 79bb0491469815f469756c3e00030c28, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2536002692914434942}
   m_SourcePrefab: {fileID: 100100000, guid: 79bb0491469815f469756c3e00030c28, type: 3}
 --- !u!1 &431205473746740387 stripped
 GameObject:
@@ -532,6 +539,27 @@ MonoBehaviour:
   waypoints:
   - {fileID: 0}
   - {fileID: 0}
+--- !u!65 &2536002692914434942
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 431205473746740387}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1.8817194, z: 1.4945269}
+  m_Center: {x: 0, y: 1.3907799, z: 0.24726343}
 --- !u!4 &1058385200197713433 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 79bb0491469815f469756c3e00030c28, type: 3}
