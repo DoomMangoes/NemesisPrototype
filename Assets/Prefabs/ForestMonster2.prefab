@@ -46,6 +46,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9104219670090349617}
   - component: {fileID: 5743919296652744332}
+  - component: {fileID: 4786359213810137896}
   m_Layer: 5
   m_Name: HealthBar
   m_TagString: Untagged
@@ -125,6 +126,18 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &4786359213810137896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4203747990488761894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df1d6d564dc6adb4981d5c666efade12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &5173379223365064316
 GameObject:
   m_ObjectHideFlags: 0
@@ -158,7 +171,7 @@ RectTransform:
   m_Father: {fileID: 8643251377615661950}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 5.0025015, y: 0}
   m_SizeDelta: {x: 19.994997, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -443,7 +456,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 79bb0491469815f469756c3e00030c28, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
