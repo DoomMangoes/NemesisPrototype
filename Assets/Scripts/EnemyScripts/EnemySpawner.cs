@@ -73,20 +73,10 @@ public class EnemySpawner : MonoBehaviour
         {
             Enemy enemy = poolableObject.GetComponent<Enemy>();
 
-            int vertexIndex = Random.Range(0, triangulation.vertices.Length);
-
-            NavMeshHit hit;
-            if(NavMesh.SamplePosition(triangulation.vertices[vertexIndex], out hit, 2f, 1))
-            {
-                enemy.agent.Warp(hit.position);
+                enemy.agent.Warp(this.transform.position);
                 enemy.movement.target = player;
                 enemy.agent.enabled = true;
                 //enemy.movement.StartChasing();
-            }
-            else
-            {
-                Debug.LogError("Unable to plave navmesh");
-            }
         }
     }
 
