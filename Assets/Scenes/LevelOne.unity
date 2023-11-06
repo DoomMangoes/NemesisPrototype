@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641258, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -67,9 +67,6 @@ LightmapSettings:
     m_LightmapParameters: {fileID: 0}
     m_LightmapsBakeMode: 1
     m_TextureCompression: 1
-    m_FinalGather: 0
-    m_FinalGatherFiltering: 1
-    m_FinalGatherRayCount: 256
     m_ReflectionCompression: 2
     m_MixedBakeMode: 2
     m_BakeBackend: 1
@@ -216,6 +213,10 @@ PrefabInstance:
     - target: {fileID: 323192830036801200, guid: dc76a07d673ad3647ad47884c8112a90, type: 3}
       propertyPath: m_Name
       value: Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 323192830036801200, guid: dc76a07d673ad3647ad47884c8112a90, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2665200801013477171, guid: dc76a07d673ad3647ad47884c8112a90, type: 3}
       propertyPath: m_Sprite
@@ -479,7 +480,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!64 &364786467
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -968,6 +969,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1042378160}
   - component: {fileID: 1042378161}
+  - component: {fileID: 1042378162}
   m_Layer: 0
   m_Name: CameraPivot
   m_TagString: Untagged
@@ -1005,6 +1007,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 3363914892613732601, guid: 920961f1e99d11148bef75d8ac1bd091, type: 3}
   smoothTime: 0.25
+--- !u!114 &1042378162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042378159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0c69633c4c63eab49bae1593bb716667, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1411953411
 GameObject:
   m_ObjectHideFlags: 0
@@ -1068,7 +1082,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 7828800568973770880, guid: 6354f89b19f74ef46b24bd36a962cd0e, type: 3}
 --- !u!95 &1411953415
 Animator:
-  serializedVersion: 5
+  serializedVersion: 7
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -1082,6 +1096,7 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
