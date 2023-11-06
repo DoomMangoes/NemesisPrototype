@@ -101,7 +101,7 @@ PrefabInstance:
       value: sword
       objectReference: {fileID: 0}
     - target: {fileID: 3099756089343826349, guid: 7fa01da1ac408954a92c6e07af96a04d, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
+      propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: 39c9d21794219ec4c89d0fa8dc247542, type: 2}
     m_RemovedComponents: []
@@ -204,7 +204,7 @@ MonoBehaviour:
   SwordSlashAudio: {fileID: 6036440088854914629}
 --- !u!95 &3490628043238102070
 Animator:
-  serializedVersion: 7
+  serializedVersion: 5
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -218,7 +218,6 @@ Animator:
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1

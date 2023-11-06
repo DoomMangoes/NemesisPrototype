@@ -1,88 +1,57 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public Transform player;
-    public int numberOfEnemiesToSpawn = 5;
-    public float SpawnDelay = 1f;
-    public List<Enemy> enemyPrefab = new List<Enemy>();
-    public SpawnMethod enemySpawnMethod = SpawnMethod.RoundRobin;
-
-    private NavMeshTriangulation triangulation;
-    private Dictionary<int, ObjectPool> enemyObjectPool = new Dictionary<int, ObjectPool>();
-
-    private void Awake()
-    {
-        for(int i = 0; i <enemyPrefab.Count; i++)
-        {
-            enemyObjectPool.Add(i, ObjectPool.CreateInstance(enemyPrefab[i], numberOfEnemiesToSpawn));
-            player = GameObject.FindGameObjectWithTag("Player").transform;
-        }
-    }
+    public ObjectPoolManager objectPoolManager; // Reference to the ObjectPoolManager script
+    public float spawnRadius = 10f;           // Radius within which enemies can spawn
+    public LayerMask groundLayer;             // Layer mask for the ground or terrain
+    public string monsterObjectName;          // Name of the monster object in the ObjectPoolManager
 
     private void Start()
     {
-        triangulation = NavMesh.CalculateTriangulation();
-
-        StartCoroutine(SpawnEnemies());
+        // Start spawning enemies periodically
+        StartCoroutine(SpawnEnemiesPeriodically());
     }
 
-    private IEnumerator SpawnEnemies()
+    private IEnumerator SpawnEnemiesPeriodically()
     {
-        WaitForSeconds Wait = new WaitForSeconds(SpawnDelay);
-
-        int spawnedEnemies = 0;
-
-        while (spawnedEnemies < numberOfEnemiesToSpawn)
+        while (true) // Spawn enemies continuously
         {
-            if (enemySpawnMethod == SpawnMethod.RoundRobin)
-            {
-                SpawnRoundRobinEnemy(spawnedEnemies);
-            }
-            else if (enemySpawnMethod == SpawnMethod.Random)
-            {
-                SpawnRandomEnemy();
-            }
-
-            spawnedEnemies++;
-
-            yield return Wait;
+            SpawnEnemy();
+            yield return new WaitForSeconds(2f); // Adjust the spawn interval as needed
         }
     }
 
-    private void SpawnRandomEnemy()
+    private void SpawnEnemy()
     {
-        DoSpawnEnemy(Random.Range(0, enemyPrefab.Count));
-    }
+        Vector3 spawnPosition = GetRandomSpawnPosition(transform.position, spawnRadius);
 
-    private void SpawnRoundRobinEnemy(int spawnedEnemies)
-    {
-        int spawnIndex = spawnedEnemies % enemyPrefab.Count;
+        // Get an enemy from the object pool based on its name
+        GameObject enemy = objectPoolManager.GetPooledObject(monsterObjectName);
 
-        DoSpawnEnemy(spawnIndex);
-    }
-
-    private void DoSpawnEnemy(int spawnIndex)
-    {
-        PoolableObject poolableObject = enemyObjectPool[spawnIndex].GetObject();
-
-        if(poolableObject != null)
+        if (enemy != null)
         {
-            Enemy enemy = poolableObject.GetComponent<Enemy>();
-
-                enemy.agent.Warp(this.transform.position);
-                enemy.movement.target = player;
-                enemy.agent.enabled = true;
-                //enemy.movement.StartChasing();
+            enemy.transform.position = spawnPosition;
+            enemy.SetActive(true);
         }
     }
 
-    public enum SpawnMethod
+    private Vector3 GetRandomSpawnPosition(Vector3 center, float radius)
     {
-        RoundRobin,
-        Random
+        float randomAngle = Random.Range(0f, 360f);
+        float randomDistance = Random.Range(0f, radius);
+
+        // Calculate the random spawn position
+        Vector3 spawnPosition = center + Quaternion.Euler(0, randomAngle, 0) * Vector3.forward * randomDistance;
+
+        // Perform raycasting to ensure the spawn position is valid
+        RaycastHit hit;
+        if (Physics.Raycast(spawnPosition, Vector3.down, out hit, 100f, groundLayer))
+        {
+            spawnPosition = hit.point;
+        }
+
+        return spawnPosition;
     }
 }
