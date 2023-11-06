@@ -24,6 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 766728020127859774}
+  serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.5, z: 0}
   m_LocalScale: {x: 1, y: 0.25, z: 0.25}
@@ -31,7 +32,6 @@ Transform:
   m_Children:
   - {fileID: 6771946029066307290}
   m_Father: {fileID: 7474335317668032965}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!156049354 &6876692101880707695
 Grid:
@@ -55,6 +55,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7474335317668032965}
   - component: {fileID: 2823505715465042841}
+  - component: {fileID: 5350800152200471938}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Wall
@@ -69,6 +70,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3817012659093725204}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 4, z: 4}
@@ -76,7 +78,6 @@ Transform:
   m_Children:
   - {fileID: 4443248277183307313}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2823505715465042841
 MonoBehaviour:
@@ -91,6 +92,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallType: 0
+--- !u!65 &5350800152200471938
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3817012659093725204}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1.75, z: 1}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &4268245141038586391
 GameObject:
   m_ObjectHideFlags: 0
@@ -116,6 +138,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4268245141038586391}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -138,7 +161,6 @@ Transform:
   - {fileID: 5340865624846227700}
   - {fileID: 2132338646311312344}
   m_Father: {fileID: 4443248277183307313}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!1839735485 &6454179967360174011
 Tilemap:
