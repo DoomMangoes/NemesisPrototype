@@ -7,9 +7,9 @@ public class healthBarScript : MonoBehaviour
 {
     public Slider healthSlider;
     public Slider easeHealthSlider;
-    public float maxhealth = 100f;
+    public float maxhealth;
     public float health;
-    public float lerpSpeed = 0.05f;
+    public float lerpSpeed;
 
     // Start is called before the first frame update
     void Start()
@@ -33,13 +33,10 @@ public class healthBarScript : MonoBehaviour
 
 
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            takeDamage(15);
-        }
+        
     }
 
-    void takeDamage(float damage)
+    public void takeDamage(float damage)
     {
         health -= damage;
     }

@@ -10,6 +10,12 @@ public class PlayerCharacterController : MonoBehaviour
     public VisualEffect swordSlashVFX2;
     public VisualEffect swordSlashVFX3;
 
+    public Transform AttackPoint;
+    public float attackRange = 1f;
+    public LayerMask enemyLayers;
+
+    public float attackDamage = 5f;
+
     private void Awake()
     {
         instance = this;
@@ -41,11 +47,21 @@ public class PlayerCharacterController : MonoBehaviour
         {
             isAttacking = true;
 
-            // Play the SwordSlashOne VFX
-            //if (swordSlashVFX != null)
-           // {
-            //    swordSlashVFX.Play();
-           // }
+            Collider[] hitEnemies = Physics.OverlapSphere(AttackPoint.position, attackRange, enemyLayers);
+
+            foreach(Collider enemy in hitEnemies)
+            {
+                Debug.Log("We hit" + enemy.name);
+                enemy.GetComponent<AttributeManager>().TakeDamage(attackDamage);
+            }
         }
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        if (AttackPoint == null)
+            return;
+
+        Gizmos.DrawWireSphere(AttackPoint.position, attackRange);
     }
 }
