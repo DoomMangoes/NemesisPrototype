@@ -271,6 +271,18 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6434627597668974332, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}
+      propertyPath: m_Drag
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6434627597668974332, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}
+      propertyPath: m_Mass
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6434627597668974332, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}
+      propertyPath: m_AngularDrag
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 6531738859413762524, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
       value: -68.301796
@@ -521,6 +533,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 0
+  animator: {fileID: 0}
 --- !u!1 &8025720126645937115 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3935803006843652363, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}
