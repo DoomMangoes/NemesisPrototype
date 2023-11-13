@@ -7,6 +7,7 @@ public class AttributeManager : MonoBehaviour
     public float maxHealth;
     private float currenthealth;
     private healthBarScript healthBar;
+    public Animator animator;
 
     void Start()
     {
@@ -23,7 +24,7 @@ public class AttributeManager : MonoBehaviour
 
         //Play hurt animation
 
-        if (currenthealth < 0)
+        if (currenthealth <= 0)
         {
             Die();
         }
@@ -33,8 +34,8 @@ public class AttributeManager : MonoBehaviour
     {
         Debug.Log("Enemy died!");
 
-        //Die animation
-
-        //disable enemy
+        {
+            animator.SetTrigger("Die");
+        }
     }
 }

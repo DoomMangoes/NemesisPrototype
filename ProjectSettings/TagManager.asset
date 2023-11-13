@@ -6,11 +6,12 @@ TagManager:
   tags:
   - Door
   - Wall
+  - HealthBar
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Enemy
   - Water
   - UI
   - 

@@ -123,80 +123,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1001 &75170307
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: -8679921383154817045, guid: b69951ae1dab28346814d049505f20eb, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -4.306244
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b69951ae1dab28346814d049505f20eb, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.0000009536743
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b69951ae1dab28346814d049505f20eb, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 7.68909
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b69951ae1dab28346814d049505f20eb, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b69951ae1dab28346814d049505f20eb, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b69951ae1dab28346814d049505f20eb, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b69951ae1dab28346814d049505f20eb, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b69951ae1dab28346814d049505f20eb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b69951ae1dab28346814d049505f20eb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: b69951ae1dab28346814d049505f20eb, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 919132149155446097, guid: b69951ae1dab28346814d049505f20eb, type: 3}
-      propertyPath: m_Name
-      value: chubbyGolemWithArmatureRUNNING
-      objectReference: {fileID: 0}
-    - target: {fileID: 4083501151425157549, guid: b69951ae1dab28346814d049505f20eb, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 101.41
-      objectReference: {fileID: 0}
-    - target: {fileID: 4083501151425157549, guid: b69951ae1dab28346814d049505f20eb, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 101.41
-      objectReference: {fileID: 0}
-    - target: {fileID: 4083501151425157549, guid: b69951ae1dab28346814d049505f20eb, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 101.41
-      objectReference: {fileID: 0}
-    - target: {fileID: 4083501151425157549, guid: b69951ae1dab28346814d049505f20eb, type: 3}
-      propertyPath: m_ConstrainProportionsScale
-      value: 1
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects:
-    - {fileID: -516098083770646512, guid: b69951ae1dab28346814d049505f20eb, type: 3}
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: b69951ae1dab28346814d049505f20eb, type: 3}
 --- !u!1 &141728592 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b69951ae1dab28346814d049505f20eb, type: 3}
@@ -286,6 +212,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &141728602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 141728592}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49228e2cf545fa34db556101e7bc229d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 200
 --- !u!1 &364786466
 GameObject:
   m_ObjectHideFlags: 0
@@ -533,7 +472,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b69951ae1dab28346814d049505f20eb, type: 3}
       propertyPath: m_Name
-      value: chubbyGolemWithArmatureRUNNING (1)
+      value: GolemBoss
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: b69951ae1dab28346814d049505f20eb, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -551,6 +494,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b69951ae1dab28346814d049505f20eb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 141728600}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b69951ae1dab28346814d049505f20eb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 141728602}
   m_SourcePrefab: {fileID: 100100000, guid: b69951ae1dab28346814d049505f20eb, type: 3}
 --- !u!1 &705507993
 GameObject:
@@ -752,9 +698,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 200
   m_WholeNumbers: 0
-  m_Value: 100
+  m_Value: 200
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1410,9 +1356,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 0}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 100
+  m_MaxValue: 200
   m_WholeNumbers: 0
-  m_Value: 100
+  m_Value: 200
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1503,7 +1449,7 @@ GameObject:
   - component: {fileID: 2083155925}
   m_Layer: 5
   m_Name: Healthbar
-  m_TagString: Untagged
+  m_TagString: HealthBar
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1543,9 +1489,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthSlider: {fileID: 890714943}
   easeHealthSlider: {fileID: 1711023535}
-  maxhealth: 100
+  maxhealth: 200
   health: 0
-  lerpSpeed: 0.05
+  lerpSpeed: 0.01
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -1554,6 +1500,5 @@ SceneRoots:
   - {fileID: 364786470}
   - {fileID: 1042378160}
   - {fileID: 1411953413}
-  - {fileID: 75170307}
   - {fileID: 678756363}
   - {fileID: 1430088297}
