@@ -164,6 +164,10 @@ PrefabInstance:
       value: lizardTpose Variant
       objectReference: {fileID: 0}
     - target: {fileID: 3844577329639942736, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3844577329639942736, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
@@ -250,6 +254,10 @@ PrefabInstance:
     - target: {fileID: 4472494557875220714, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}
       propertyPath: m_ConstrainProportionsScale
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4677321963641205940, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5243523709459294017, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -473,6 +481,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3844577329639942736, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1960571701892745906}
+    - targetCorrespondingSourceObject: {fileID: 3844577329639942736, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 884331646233195917}
     - targetCorrespondingSourceObject: {fileID: 3935803006843652363, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2002302346736823643}
@@ -527,12 +538,26 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7828800568973770880}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 49228e2cf545fa34db556101e7bc229d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 0
+  animator: {fileID: 0}
+--- !u!114 &884331646233195917
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7828800568973770880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f8d4e8264923bcb49b3abc094adfc38b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
   animator: {fileID: 0}
 --- !u!1 &8025720126645937115 stripped
 GameObject:
