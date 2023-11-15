@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttributeManager : MonoBehaviour
+public class PlayerAttributeManager : MonoBehaviour
 {
     public float maxHealth;
     private float currenthealth;
     private healthBarScript healthBar;
-    public Animator animator;
+   // public Animator animator;
 
     void Start()
     {
         currenthealth = maxHealth;
 
-        healthBar = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<healthBarScript>();
+        healthBar = GameObject.FindGameObjectWithTag("PlayerHealthBar").GetComponent<healthBarScript>();
     }
 
     public void TakeDamage(float damage)
@@ -34,8 +34,8 @@ public class AttributeManager : MonoBehaviour
     {
         Debug.Log("Enemy died!");
 
-        {
-            animator.SetTrigger("Die");
-        }
+        
+            //animator.SetTrigger("Die");
+        
     }
 }

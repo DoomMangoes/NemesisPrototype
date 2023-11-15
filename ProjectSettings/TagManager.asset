@@ -6,11 +6,13 @@ TagManager:
   tags:
   - Door
   - Wall
+  - HealthBar
+  - GolemCanvas
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Enemy
   - Water
   - UI
   - 
