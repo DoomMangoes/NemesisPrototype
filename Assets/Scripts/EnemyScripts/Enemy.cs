@@ -33,8 +33,6 @@ public class Enemy : PoolableObject
         agent.radius = enemyScriptableObject.Radius;
         agent.speed = enemyScriptableObject.Speed;
         agent.stoppingDistance = enemyScriptableObject.StoppingDistance;
-
-        movement.updateSpeed = enemyScriptableObject.AIUpdateInterval;
         health = enemyScriptableObject.health;
     }
 }

@@ -178,6 +178,7 @@ public class RoomController : MonoBehaviour
 
             yield return null;
         }
+
     }
 
     public void RegisterRoom(Room room){
@@ -851,11 +852,8 @@ public class RoomController : MonoBehaviour
                     room.CheckAdjacentRoom();
 
 
-            }
-
-            
+            }           
 
     }
 
-    
 }

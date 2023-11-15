@@ -563,7 +563,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 431205473746740387}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d264a0500efcbc24f86b94f06ac30faa, type: 3}
   m_Name: 
@@ -584,9 +584,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 611a7b6e1c73e2e4fbdc3f9d3135d967, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 7489112411220122170, guid: 6354f89b19f74ef46b24bd36a962cd0e, type: 3}
-  detectionRadius: 5
-  updateSpeed: 0.1
+  currState: 0
+  range: 0
+  speed: 4
 --- !u!4 &1058385200197713433 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 79bb0491469815f469756c3e00030c28, type: 3}
