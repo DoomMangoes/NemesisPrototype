@@ -177,7 +177,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4357230380834008968, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}
       propertyPath: speed
-      value: 5
+      value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 4357230380834008968, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}
       propertyPath: m_Enabled
@@ -186,6 +186,10 @@ PrefabInstance:
     - target: {fileID: 4357230380834008968, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}
       propertyPath: reposition
       value: 1.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4357230380834008968, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}
+      propertyPath: rotationSpeed
+      value: 2000
       objectReference: {fileID: 0}
     - target: {fileID: 4363756075612374894, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -558,7 +562,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  animator: {fileID: 0}
 --- !u!1 &8025720126645937115 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 3935803006843652363, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}

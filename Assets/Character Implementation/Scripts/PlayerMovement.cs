@@ -14,23 +14,33 @@ public class PlayerMovement : MonoBehaviour
     }
 
     // Update is called once per frame
+    // Update is called once per frame
     void Update()
     {
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
 
-        Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
-        movementDirection.Normalize();
+        // Adjusting input for isometric movement
+        float diagonalMultiplier = 0.7f; // Tweak this value for desired diagonal speed
+        Vector3 movementDirection = new Vector3(
+            horizontalInput + verticalInput,
+            0,
+            verticalInput - horizontalInput  // Adjusted the calculation here
+        ).normalized;
+
 
         transform.Translate(movementDirection * speed * Time.deltaTime, Space.World);
 
         if (movementDirection != Vector3.zero)
         {
             Quaternion toRotation = Quaternion.LookRotation(movementDirection, Vector3.up);
-
             transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
         }
     }
+
+
+
+
 
     void repositionAfterAttack()
     {

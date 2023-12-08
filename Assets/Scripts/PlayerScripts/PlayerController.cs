@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
 
     [SerializeField] private Rigidbody _instance;
     [SerializeField] private float _speed = 5f;
-    [SerializeField] private float _turnSpeed = 360f;
+    [SerializeField] private float _turnSpeed = 1000f;
 
     private Vector3 _input;
 
@@ -42,10 +42,18 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    void GatherInput(){
-        _input = new Vector3(Input.GetAxisRaw("Horizontal"),0, Input.GetAxisRaw("Vertical"));
+    void GatherInput()
+    {
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float verticalInput = Input.GetAxisRaw("Vertical");
 
-
+        // Adjust the input to match the isometric movement
+        float diagonalMultiplier = 0.75f; // Adjust this value to fit your isometric movement speed
+        _input = new Vector3(
+            horizontalInput + verticalInput * diagonalMultiplier,
+            0f,
+            -verticalInput + horizontalInput * diagonalMultiplier
+        ).normalized;
     }
 
     void Look(){
