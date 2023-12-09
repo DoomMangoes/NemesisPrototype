@@ -8,13 +8,16 @@ public class ChatBubble3D : MonoBehaviour
 {
     public static void Create(Transform parent, Vector3 localPosition, IconType iconType, string text)
     {
-        if (GameAssets.Instance.ChatBubble3D == null)
+        // Load the prefab directly from the "Prefabs" folder
+        GameObject ChatBubble3D = Resources.Load<GameObject>("Prefabs/ChatBubble3D");
+
+        if (ChatBubble3D == null)
         {
-            Debug.LogError("ChatBubble3D prefab is not assigned in GameAssets.");
+            Debug.LogError("ChatBubble3D prefab not found in Resources/Prefabs folder.");
             return;
         }
 
-        Transform chatBubbleTransform = Instantiate(GameAssets.Instance.ChatBubble3D, parent);
+        Transform chatBubbleTransform = Instantiate(ChatBubble3D, parent).transform;
         chatBubbleTransform.localPosition = localPosition;
 
         ChatBubble3D chatBubble = chatBubbleTransform.GetComponent<ChatBubble3D>();
