@@ -24,6 +24,7 @@ public class PlayerCharacterController : MonoBehaviour
     void Start()
     {
         myAnim = GetComponent<Animator>();
+        myAnim.SetTrigger("Spawn");
     }
 
     void Update()
