@@ -18,7 +18,7 @@ public class CamFollow : MonoBehaviour
         offSet = transform.position - target.position;
     }
 
-    private void LateUpdate()
+    private void Update()
     {
         Vector3 targetPosition = target.position + offSet;
         transform.position = Vector3.SmoothDamp(transform.position, targetPosition, ref currentVelocity, smoothTime);
