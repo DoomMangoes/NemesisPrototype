@@ -6,7 +6,7 @@ public class PlayerAttributeManager : MonoBehaviour
 {
     public float maxHealth;
     private float currenthealth;
-    private healthBarScript healthBar;sa
+    private healthBarScript healthBar;
    // public Animator animator;
 
     void Start()
