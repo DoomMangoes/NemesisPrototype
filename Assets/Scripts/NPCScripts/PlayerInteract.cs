@@ -14,6 +14,7 @@ public class PlayerInteract : MonoBehaviour
             {
                 if (collider.TryGetComponent(out NPCInteractable npcInteractable)){
                     npcInteractable.Interact();
+                    Debug.Log("E is pressed");
                 }
             }
         }

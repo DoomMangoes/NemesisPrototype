@@ -1,23 +1,23 @@
 using UnityEngine;
 
-public class GameAsset : MonoBehaviour
+public class GameAssets : MonoBehaviour
 {
-    // Singleton instance for easy access
-    public static GameAsset Instance { get; private set; }
 
-    // Reference to the prefab
-    public GameObject pfChatBubble;
+    private static GameAssets Prefabs;
+
+    public static GameAssets Instance
+    {
+        get
+        {
+            if (Prefabs == null) Prefabs = Instantiate(Resources.Load<GameAssets>("GameAssets"));
+            return Prefabs;
+        }
+    }
 
     private void Awake()
     {
-        // Ensure there is only one instance of this class
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Prefabs = this;
     }
+
+    public Transform ChatBubble3D;
 }
