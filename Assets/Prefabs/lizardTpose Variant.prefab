@@ -188,6 +188,10 @@ PrefabInstance:
       value: 7.5
       objectReference: {fileID: 0}
     - target: {fileID: 4357230380834008968, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}
+      propertyPath: _instance
+      value: 
+      objectReference: {fileID: 50579323786122284}
+    - target: {fileID: 4357230380834008968, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
@@ -314,6 +318,14 @@ PrefabInstance:
     - target: {fileID: 6434627597668974332, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}
       propertyPath: m_AngularDrag
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 6434627597668974332, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}
+      propertyPath: m_Constraints
+      value: 112
+      objectReference: {fileID: 0}
+    - target: {fileID: 6434627597668974332, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6531738859413762524, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -515,6 +527,11 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2002302346736823643}
   m_SourcePrefab: {fileID: 100100000, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}
+--- !u!54 &50579323786122284 stripped
+Rigidbody:
+  m_CorrespondingSourceObject: {fileID: 6434627597668974332, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}
+  m_PrefabInstance: {fileID: 6485132979289696976}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7489112411220122170 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4472494557875220714, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}

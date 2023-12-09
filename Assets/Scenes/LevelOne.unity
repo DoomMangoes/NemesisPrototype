@@ -1359,6 +1359,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1042378160}
   - component: {fileID: 1042378161}
+  - component: {fileID: 1042378162}
   m_Layer: 0
   m_Name: CameraPivot
   m_TagString: Untagged
@@ -1396,6 +1397,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   target: {fileID: 3363914892613732601, guid: 920961f1e99d11148bef75d8ac1bd091, type: 3}
   smoothTime: 0.25
+--- !u!114 &1042378162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1042378159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0b7ae5c01d4bd924fb7eeb28f517e630, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1043803062
 GameObject:
   m_ObjectHideFlags: 0
@@ -2371,66 +2384,6 @@ MonoBehaviour:
   maxhealth: 200
   health: 0
   lerpSpeed: 0.01
---- !u!1001 &5451463716713219268
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 7474043589322013578, guid: 61a9b61a83b6ff24a82cb7c3e536d098, type: 3}
-      propertyPath: m_Name
-      value: ChatBubble3D
-      objectReference: {fileID: 0}
-    - target: {fileID: 7633364370347063534, guid: 61a9b61a83b6ff24a82cb7c3e536d098, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7633364370347063534, guid: 61a9b61a83b6ff24a82cb7c3e536d098, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 3.78
-      objectReference: {fileID: 0}
-    - target: {fileID: 7633364370347063534, guid: 61a9b61a83b6ff24a82cb7c3e536d098, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7633364370347063534, guid: 61a9b61a83b6ff24a82cb7c3e536d098, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7633364370347063534, guid: 61a9b61a83b6ff24a82cb7c3e536d098, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7633364370347063534, guid: 61a9b61a83b6ff24a82cb7c3e536d098, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7633364370347063534, guid: 61a9b61a83b6ff24a82cb7c3e536d098, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7633364370347063534, guid: 61a9b61a83b6ff24a82cb7c3e536d098, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7633364370347063534, guid: 61a9b61a83b6ff24a82cb7c3e536d098, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7633364370347063534, guid: 61a9b61a83b6ff24a82cb7c3e536d098, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 4706439491267419300, guid: 61a9b61a83b6ff24a82cb7c3e536d098, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 0}
-  m_SourcePrefab: {fileID: 100100000, guid: 61a9b61a83b6ff24a82cb7c3e536d098, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -2441,4 +2394,3 @@ SceneRoots:
   - {fileID: 1411953413}
   - {fileID: 1430088297}
   - {fileID: 1187862555}
-  - {fileID: 5451463716713219268}
