@@ -26,8 +26,6 @@ public class BossIdle : StateMachineBehaviour
             playerTransform = player.transform;
             float distanceToPlayer = Vector3.Distance(animator.transform.position, playerTransform.position);
 
-            Debug.Log("Distance to Player: " + distanceToPlayer);
-
             if (distanceToPlayer <= distanceToWakeUp)
             {
                 if (golemCanvas != null)
