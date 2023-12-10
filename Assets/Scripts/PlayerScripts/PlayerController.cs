@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
     public VisualEffect swordSlashVFX2;
     public VisualEffect swordSlashVFX3;
 
+    static public bool dialogue = false;
+
     [SerializeField] private AudioSource SwordSlashAudio;
 
     private void Awake()
@@ -38,7 +40,10 @@ public class PlayerController : MonoBehaviour
     }
 
     void FixedUpdate() {
-        Move();
+
+        if (!dialogue){
+            Move();
+        } 
     }
 
 

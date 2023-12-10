@@ -16,6 +16,8 @@ public class PlayerCharacterController : MonoBehaviour
 
     public float attackDamage = 5f;
 
+    static public bool dialogue = false;
+
     private void Awake()
     {
         instance = this;
@@ -31,14 +33,17 @@ public class PlayerCharacterController : MonoBehaviour
     {
         Attack();
 
-        // Movement 
-        if (Input.GetKey("w") || Input.GetKey("a") || Input.GetKey("s") || Input.GetKey("d"))
+        if (!dialogue)
         {
-            myAnim.SetBool("isMoving", true);
-        }
-        else
-        {
-            myAnim.SetBool("isMoving", false);
+            // Movement 
+            if (Input.GetKey("w") || Input.GetKey("a") || Input.GetKey("s") || Input.GetKey("d"))
+            {
+                myAnim.SetBool("isMoving", true);
+            }
+            else
+            {
+                myAnim.SetBool("isMoving", false);
+            }
         }
     }
 
