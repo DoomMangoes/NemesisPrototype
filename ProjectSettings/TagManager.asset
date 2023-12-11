@@ -11,6 +11,8 @@ TagManager:
   - PlayerHealthBar
   - Portal
   - Projectile
+  - Logic
+  - SoulEssence
   layers:
   - Default
   - TransparentFX

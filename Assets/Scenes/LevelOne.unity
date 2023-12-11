@@ -1166,7 +1166,7 @@ GameObject:
   - component: {fileID: 403365469}
   - component: {fileID: 403365468}
   m_Layer: 5
-  m_Name: Text (Legacy)
+  m_Name: Gimlin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1224,7 +1224,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Legolas
+  m_Text: Gimlin
 --- !u!222 &403365469
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1750,6 +1750,85 @@ CanvasRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 633082614}
+  m_CullTransparentMesh: 1
+--- !u!1 &690595675
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 690595676}
+  - component: {fileID: 690595678}
+  - component: {fileID: 690595677}
+  m_Layer: 5
+  m_Name: Soul Counter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &690595676
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 690595675}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1187862555}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 1}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -237, y: -155}
+  m_SizeDelta: {x: 391.30383, y: 278.62964}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &690595677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 690595675}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_FontData:
+    m_Font: {fileID: 12800000, guid: e3265ab4bf004d28a9537516768c1c75, type: 3}
+    m_FontSize: 141
+    m_FontStyle: 1
+    m_BestFit: 0
+    m_MinSize: 3
+    m_MaxSize: 141
+    m_Alignment: 2
+    m_AlignByGeometry: 0
+    m_RichText: 1
+    m_HorizontalOverflow: 0
+    m_VerticalOverflow: 0
+    m_LineSpacing: 1
+  m_Text: 0
+--- !u!222 &690595678
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 690595675}
   m_CullTransparentMesh: 1
 --- !u!1 &702139933
 GameObject:
@@ -4019,6 +4098,7 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 690595676}
   - {fileID: 956061196}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4769,9 +4849,10 @@ GameObject:
   - component: {fileID: 1411953412}
   - component: {fileID: 1411953414}
   - component: {fileID: 1411953415}
+  - component: {fileID: 1411953416}
   m_Layer: 0
   m_Name: RoomController
-  m_TagString: Untagged
+  m_TagString: Logic
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4839,6 +4920,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1411953416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411953411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9230101e13e2670499c7ee42ef7e2a3d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soulCount: 0
+  count: {fileID: 690595677}
 --- !u!1 &1430088293
 GameObject:
   m_ObjectHideFlags: 0
@@ -6490,6 +6585,14 @@ PrefabInstance:
     - target: {fileID: 2921677680451986793, guid: e6937a79e3dcdbd4c9d488c8ae3074d6, type: 3}
       propertyPath: m_Name
       value: GameLoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 5621940094880479120, guid: e6937a79e3dcdbd4c9d488c8ae3074d6, type: 3}
+      propertyPath: m_TagString
+      value: SoulEssence
+      objectReference: {fileID: 0}
+    - target: {fileID: 7716687278769620695, guid: e6937a79e3dcdbd4c9d488c8ae3074d6, type: 3}
+      propertyPath: m_Radius
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

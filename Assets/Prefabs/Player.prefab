@@ -140,6 +140,10 @@ PrefabInstance:
       value: 0.0071057933
       objectReference: {fileID: 0}
     - target: {fileID: 3005885412655746017, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3005885412655746017, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
@@ -535,6 +539,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 3844577329639942736, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}
       insertIndex: -1
       addedObject: {fileID: -4184497216947401748}
+    - targetCorrespondingSourceObject: {fileID: 3844577329639942736, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1783966153281323390}
+    - targetCorrespondingSourceObject: {fileID: 3844577329639942736, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 890642857752178272}
     - targetCorrespondingSourceObject: {fileID: 3935803006843652363, guid: 44924327d2d6d5e47b7bb2f87a22a96f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 2002302346736823643}
@@ -606,6 +616,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 0
   animator: {fileID: 0}
+  healthBar: {fileID: 0}
+  deathPrefab: {fileID: 0}
 --- !u!114 &884331646233195917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -630,6 +642,39 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1e93b23bed64fe4085e83f172c362e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!65 &1783966153281323390
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7828800568973770880}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 3.15, z: 1}
+  m_Center: {x: 0, y: 1.55, z: 0}
+--- !u!114 &890642857752178272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7828800568973770880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f2a6f3ef2f68e0a43907d6f740845f9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &8025720126645937115 stripped
