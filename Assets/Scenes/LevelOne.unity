@@ -2620,26 +2620,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1625580888019648681, guid: e40fd8e5c046d3b4bb09bccb56bf4c70, type: 3}
-      propertyPath: animator
-      value: 
-      objectReference: {fileID: 8787079298990503047}
-    - target: {fileID: 1625580888019648681, guid: e40fd8e5c046d3b4bb09bccb56bf4c70, type: 3}
-      propertyPath: sightRange
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1625580888019648681, guid: e40fd8e5c046d3b4bb09bccb56bf4c70, type: 3}
-      propertyPath: attackRange
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1625580888019648681, guid: e40fd8e5c046d3b4bb09bccb56bf4c70, type: 3}
-      propertyPath: timeBetweenAttacks
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 1625580888019648681, guid: e40fd8e5c046d3b4bb09bccb56bf4c70, type: 3}
-      propertyPath: whatIsGround.m_Bits
-      value: 128
-      objectReference: {fileID: 0}
     - target: {fileID: 8553510608536444482, guid: e40fd8e5c046d3b4bb09bccb56bf4c70, type: 3}
       propertyPath: m_Name
       value: Bat
@@ -2689,11 +2669,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e40fd8e5c046d3b4bb09bccb56bf4c70, type: 3}
---- !u!95 &8787079298990503047 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 3107431981610442370, guid: e40fd8e5c046d3b4bb09bccb56bf4c70, type: 3}
-  m_PrefabInstance: {fileID: 8787079298990503046}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
