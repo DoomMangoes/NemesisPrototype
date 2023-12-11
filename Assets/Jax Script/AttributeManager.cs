@@ -5,26 +5,26 @@ using UnityEngine;
 public class AttributeManager : MonoBehaviour
 {
     public float maxHealth;
-    private float currenthealth;
+    private float currentHealth;
     private healthBarScript healthBar;
     public Animator animator;
 
+    public delegate void BossDefeatedEvent();
+    public static event BossDefeatedEvent OnBossDefeated;
+
     void Start()
     {
-        currenthealth = maxHealth;
-
+        currentHealth = maxHealth;
         healthBar = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<healthBarScript>();
     }
 
     public void TakeDamage(float damage)
     {
-        currenthealth -= damage;
+        currentHealth -= damage;
 
         healthBar.takeDamage(damage);
 
-        //Play hurt animation
-
-        if (currenthealth <= 0)
+        if (currentHealth <= 0)
         {
             Die();
         }
@@ -34,8 +34,22 @@ public class AttributeManager : MonoBehaviour
     {
         Debug.Log("Enemy died!");
 
+        // Set the "Die" trigger in the animator
+        animator.SetTrigger("Die");
+
+        // Delay the destruction by 5 seconds
+        Invoke("DestroyAfterDelay", 10f);
+    }
+
+    void DestroyAfterDelay()
+    {
+        // Trigger the BossDefeated event
+        if (OnBossDefeated != null)
         {
-            animator.SetTrigger("Die");
+            OnBossDefeated();
         }
+
+        // Destroy the object
+        Destroy(gameObject);
     }
 }

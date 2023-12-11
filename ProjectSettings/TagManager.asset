@@ -9,6 +9,7 @@ TagManager:
   - HealthBar
   - GolemCanvas
   - PlayerHealthBar
+  - Portal
   layers:
   - Default
   - TransparentFX

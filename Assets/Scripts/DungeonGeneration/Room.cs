@@ -67,10 +67,6 @@ public class Room : MonoBehaviour
             Debug.Log("Wrong Scene");
             return;
         }
-
-
-
-
         Door[] ds = GetComponentsInChildren<Door>();
 
         foreach(Door d in ds){
