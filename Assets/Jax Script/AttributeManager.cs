@@ -11,6 +11,8 @@ public class AttributeManager : MonoBehaviour
     // Reference to the specific health bar for this enemy
     public healthBarScript healthBar;
 
+    public GameObject deathPrefab; // Reference to the prefab to instantiate upon death
+
     public delegate void BossDefeatedEvent();
     public static event BossDefeatedEvent OnBossDefeated;
 
@@ -46,7 +48,13 @@ public class AttributeManager : MonoBehaviour
 
         if (animator != null)
         {
-            OnBossDefeated();
+            OnBossDefeated?.Invoke();
+        }
+
+        // Instantiate the prefab
+        if (deathPrefab != null)
+        {
+            Instantiate(deathPrefab, transform.position, Quaternion.identity);
         }
 
         // Destroy the object
