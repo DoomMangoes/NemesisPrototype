@@ -13,28 +13,29 @@ public class Follow : MonoBehaviour
     {
         follow = true;
     }
+
     void Update()
     {
         GameObject player = GameObject.FindGameObjectWithTag("Player");
 
         if (player != null)
         {
-            if (follow == true)
+            if (follow)
             {
                 target = player.transform;
 
-                // Smoothly follow the player using SmoothDamp
+                // Adjust Y position to make it travel lower
+                Vector3 targetPosition = target.position;
+                targetPosition.y = 0; // Set your desired lower Y position
+
+                // Smoothly follow the modified position using SmoothDamp
                 transform.position = Vector3.SmoothDamp(
                     transform.position,
-                    target.position,
+                    targetPosition,
                     ref _velocity,
                     Time.deltaTime * Random.Range(minModifier, maxModifier)
                 );
             }
-           
         }
     }
-
-    
 }
-
