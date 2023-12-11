@@ -49,11 +49,6 @@ public class AttributeManager : MonoBehaviour
             OnBossDefeated();
         }
 
-        
-    }
-
-    public void SelfDestruct()
-    {
         // Destroy the object
         Destroy(gameObject);
     }
