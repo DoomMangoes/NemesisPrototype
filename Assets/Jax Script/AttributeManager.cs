@@ -5,26 +5,33 @@ using UnityEngine;
 public class AttributeManager : MonoBehaviour
 {
     public float maxHealth;
-    private float currenthealth;
-    private healthBarScript healthBar;
+    private float currentHealth;
     public Animator animator;
+
+    // Reference to the specific health bar for this enemy
+    public healthBarScript healthBar;
 
     void Start()
     {
-        currenthealth = maxHealth;
+        currentHealth = maxHealth;
 
-        healthBar = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<healthBarScript>();
+        // Assign the health bar reference via Inspector or script
+        // healthBar = ...; // Assign the health bar specific to this enemy
     }
 
     public void TakeDamage(float damage)
     {
-        currenthealth -= damage;
+        currentHealth -= damage;
 
-        healthBar.takeDamage(damage);
+        // Ensure the associated health bar exists and update its display
+        if (healthBar != null)
+        {
+            healthBar.takeDamage(damage);
+        }
 
-        //Play hurt animation
+        // Play hurt animation
 
-        if (currenthealth <= 0)
+        if (currentHealth <= 0)
         {
             Die();
         }
@@ -34,6 +41,7 @@ public class AttributeManager : MonoBehaviour
     {
         Debug.Log("Enemy died!");
 
+        if (animator != null)
         {
             animator.SetTrigger("Die");
         }
