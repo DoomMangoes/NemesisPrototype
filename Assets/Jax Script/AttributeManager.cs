@@ -6,8 +6,10 @@ public class AttributeManager : MonoBehaviour
 {
     public float maxHealth;
     private float currentHealth;
-    private healthBarScript healthBar;
     public Animator animator;
+
+    // Reference to the specific health bar for this enemy
+    public healthBarScript healthBar;
 
     public delegate void BossDefeatedEvent();
     public static event BossDefeatedEvent OnBossDefeated;
@@ -15,14 +17,22 @@ public class AttributeManager : MonoBehaviour
     void Start()
     {
         currentHealth = maxHealth;
-        healthBar = GameObject.FindGameObjectWithTag("HealthBar").GetComponent<healthBarScript>();
+
+        // Assign the health bar reference via Inspector or script
+        // healthBar = ...; // Assign the health bar specific to this enemy
     }
 
     public void TakeDamage(float damage)
     {
         currentHealth -= damage;
 
-        healthBar.takeDamage(damage);
+        // Ensure the associated health bar exists and update its display
+        if (healthBar != null)
+        {
+            healthBar.takeDamage(damage);
+        }
+
+        // Play hurt animation
 
         if (currentHealth <= 0)
         {
@@ -34,17 +44,7 @@ public class AttributeManager : MonoBehaviour
     {
         Debug.Log("Enemy died!");
 
-        // Set the "Die" trigger in the animator
-        animator.SetTrigger("Die");
-
-        // Delay the destruction by 5 seconds
-        Invoke("DestroyAfterDelay", 10f);
-    }
-
-    void DestroyAfterDelay()
-    {
-        // Trigger the BossDefeated event
-        if (OnBossDefeated != null)
+        if (animator != null)
         {
             OnBossDefeated();
         }

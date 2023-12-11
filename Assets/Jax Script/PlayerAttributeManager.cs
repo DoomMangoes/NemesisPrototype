@@ -7,7 +7,7 @@ public class PlayerAttributeManager : MonoBehaviour
     public float maxHealth;
     private float currenthealth;
     private healthBarScript healthBar;
-   // public Animator animator;
+    public Animator animator;
 
     void Start()
     {
@@ -35,7 +35,7 @@ public class PlayerAttributeManager : MonoBehaviour
         Debug.Log("Enemy died!");
 
         
-            //animator.SetTrigger("Die");
+            animator.SetTrigger("Die");
         
     }
 }
