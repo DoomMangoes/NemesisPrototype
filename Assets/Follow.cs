@@ -37,5 +37,9 @@ public class Follow : MonoBehaviour
                 );
             }
         }
+        else
+        {
+            Debug.LogWarning("Player not found!");
+        }
     }
 }
