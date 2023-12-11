@@ -82,15 +82,7 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5fc3607e1d0a731469681ce3e0fa31af, type: 3}
       insertIndex: -1
       addedObject: {fileID: 8991653105347987463}
-    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 5fc3607e1d0a731469681ce3e0fa31af, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1625580888019648681}
   m_SourcePrefab: {fileID: 100100000, guid: 5fc3607e1d0a731469681ce3e0fa31af, type: 3}
---- !u!95 &3107431981610442370 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 5866666021909216657, guid: 5fc3607e1d0a731469681ce3e0fa31af, type: 3}
-  m_PrefabInstance: {fileID: 8824035210113098515}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &8553510608536444482 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 5fc3607e1d0a731469681ce3e0fa31af, type: 3}
@@ -144,33 +136,3 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 3.279978, y: 4.4922953, z: 4.5188575}
   m_Center: {x: -0.060481824, y: 2.4496603, z: -0.795635}
---- !u!114 &1625580888019648681
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8553510608536444482}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84dda757ad888d14283041b8211b644a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 7489112411220122170, guid: 6354f89b19f74ef46b24bd36a962cd0e, type: 3}
-  whatIsGround:
-    serializedVersion: 2
-    m_Bits: 128
-  whatIsPlayer:
-    serializedVersion: 2
-    m_Bits: 64
-  health: 100
-  walkPoint: {x: 0, y: 0, z: 0}
-  walkPointRange: 2
-  patrolSpeed: 3
-  timeBetweenAttacks: 2
-  projectile: {fileID: 7629113073572196145, guid: 9ecfb231b0b833f4c860cd8737c54676, type: 3}
-  sightRange: 5
-  attackRange: 8
-  playerInSightRange: 0
-  playerInAttackRange: 0
-  animator: {fileID: 3107431981610442370}
