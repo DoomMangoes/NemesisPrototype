@@ -29,13 +29,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4464495180939656000}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 7.5, y: 3, z: 0}
   m_LocalScale: {x: 1, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &7154872899863630542
 MeshFilter:
@@ -142,6 +142,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doorType: 1
+  currentRoom: {fileID: 0}
+  openDoorMaterial: {fileID: 2100000, guid: bca90f05fcc652049b4b253d80e41685, type: 2}
+  lockedDoorMaterial: {fileID: 2100000, guid: 1733046eb7a10f24db4d855414621a12, type: 2}
 --- !u!65 &3191847248140599
 BoxCollider:
   m_ObjectHideFlags: 0

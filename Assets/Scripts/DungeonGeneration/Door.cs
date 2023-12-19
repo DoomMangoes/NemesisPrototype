@@ -18,11 +18,40 @@ public class Door : MonoBehaviour
     }
 
     public DoorType doorType;
+   
+    MeshRenderer _renderer;
+    public Room currentRoom;
+
+    [SerializeField]
+    Material openDoorMaterial;
+    [SerializeField]
+    Material lockedDoorMaterial;
+
+    void Awake(){
+        _renderer = GetComponent<MeshRenderer>();
+        currentRoom = gameObject.transform.parent.gameObject.GetComponent<Room>();
+    }
     
      void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player"){
-            gameObject.SetActive(false);
+
+            if(!currentRoom.isPlayerInRoom)
+                gameObject.SetActive(false);
+        }
+    }
+
+    public void SetLocked(){
+
+        if(_renderer){
+            _renderer.material = lockedDoorMaterial;
+        }
+    }
+
+    public void SetOpen(){
+
+        if(_renderer){
+            _renderer.material = openDoorMaterial;
         }
     }
 }

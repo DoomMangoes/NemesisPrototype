@@ -34,6 +34,11 @@ public class Room : MonoBehaviour
     [SerializeField]
     public GameObject floor1;
   
+
+    //Room Check Variables
+
+    public bool isPlayerInRoom = false;
+
     void Awake(){
        
         int rand = Random.Range(0,4);
@@ -163,14 +168,7 @@ public class Room : MonoBehaviour
         return new Vector3(X * Width, 0,Z * Height);
     }
 
-    void OnTriggerEnter(Collider other) {
-        /*
-        if(other.tag == "Player"){
-            RoomController.instance.OnPlayerEnterRoom(this);
-        }
-
-        */
-    }
+   
 
     public void CheckAdjacentRoom(){
 
@@ -468,4 +466,76 @@ public class Room : MonoBehaviour
         
     }
 
+
+    //Room Check Mechanics
+    /*
+     void OnTriggerEnter(Collider other) {
+        
+
+        //If Player enters room, lock room doors
+        if(other.tag == "Player"){
+            //RoomController.instance.OnPlayerEnterRoom(this);
+
+            isPlayerInRoom = true;
+            LockRoom();
+        }
+
+    }
+
+      void OnTriggerExit(Collider other)
+    {
+        if(other.tag == "Player"){
+            isPlayerInRoom = false;
+        }
+    }
+
+    */
+    public void LockRoom(){
+
+        if(isPlayerInRoom)
+            LockDoors();
+
+    }
+
+    
+    void LockDoors(){
+
+        if(leftDoor && !leftWall.gameObject.activeSelf){
+            leftDoor.gameObject.SetActive(true);
+            leftDoor.SetLocked();
+            
+        }
+        if(rightDoor && !rightWall.gameObject.activeSelf){
+            rightDoor.gameObject.SetActive(true);
+            rightDoor.SetLocked();
+            
+        }
+        if(topDoor && !topWall.gameObject.activeSelf){
+            topDoor.gameObject.SetActive(true);   
+            topDoor.SetLocked();
+        }
+        if(bottomDoor && !bottomWall.gameObject.activeSelf){
+            bottomDoor.gameObject.SetActive(true);   
+            bottomDoor.SetLocked();
+        }
+
+        if(leftDoorB && !leftWallB.gameObject.activeSelf){
+            leftDoorB.gameObject.SetActive(true);
+            leftDoorB.SetLocked();
+            
+        }
+        if(rightDoorB && !rightWallB.gameObject.activeSelf){
+            rightDoorB.gameObject.SetActive(true);
+            rightDoorB.SetLocked();
+            
+        }
+        if(topDoorB && !topWallB.gameObject.activeSelf){
+            topDoorB.gameObject.SetActive(true);   
+            topDoorB.SetLocked();
+        }
+        if(bottomDoorB && !bottomWallB.gameObject.activeSelf){
+            bottomDoorB.gameObject.SetActive(true);   
+            bottomDoorB.SetLocked();
+        }
+    }
 }
