@@ -13,6 +13,7 @@ TagManager:
   - Projectile
   - Logic
   - SoulEssence
+  - Enemy
   layers:
   - Default
   - TransparentFX

@@ -64,6 +64,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Bat
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 5fc3607e1d0a731469681ce3e0fa31af, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 4422856751780713982, guid: 5fc3607e1d0a731469681ce3e0fa31af, type: 3}
       propertyPath: m_LocalPosition.x
       value: 26.39

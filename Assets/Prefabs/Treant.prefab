@@ -68,6 +68,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Treant
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f303fb7ed8c4b4942a56f6131d3acb60, type: 3}
+      propertyPath: m_TagString
+      value: Enemy
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

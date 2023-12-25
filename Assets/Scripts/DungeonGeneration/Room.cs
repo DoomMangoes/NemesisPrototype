@@ -38,9 +38,16 @@ public class Room : MonoBehaviour
     //Room Check Variables
 
     public bool isPlayerInRoom = false;
+    public bool isEnemyInRoom = true;
+    public bool isRoomClear= false;
+
+    public int enemyCount;
 
     void Awake(){
        
+        //Temp
+        enemyCount = 3;
+
         int rand = Random.Range(0,4);
         float randRotateY = rand * 90;
 
@@ -156,6 +163,10 @@ public class Room : MonoBehaviour
             updatedDoors = true;
         }
 
+
+        //Temp Room Function Check
+        if(isEnemyInRoom)
+            CheckRoomStatus();
     }
 
      void OnDrawGizmos() {
@@ -468,28 +479,7 @@ public class Room : MonoBehaviour
 
 
     //Room Check Mechanics
-    /*
-     void OnTriggerEnter(Collider other) {
-        
-
-        //If Player enters room, lock room doors
-        if(other.tag == "Player"){
-            //RoomController.instance.OnPlayerEnterRoom(this);
-
-            isPlayerInRoom = true;
-            LockRoom();
-        }
-
-    }
-
-      void OnTriggerExit(Collider other)
-    {
-        if(other.tag == "Player"){
-            isPlayerInRoom = false;
-        }
-    }
-
-    */
+    
     public void LockRoom(){
 
         if(isPlayerInRoom)
@@ -537,5 +527,67 @@ public class Room : MonoBehaviour
             bottomDoorB.gameObject.SetActive(true);   
             bottomDoorB.SetLocked();
         }
+    }
+
+    // Temp Open Room System
+
+    public void OpenRoom(){
+
+        if(isPlayerInRoom && !isEnemyInRoom)
+            OpenDoors();
+
+    }
+
+    void OpenDoors(){
+
+        if(leftDoor && !leftWall.gameObject.activeSelf){
+            //leftDoor.gameObject.SetActive(true);
+            leftDoor.SetOpen();
+            
+        }
+        if(rightDoor && !rightWall.gameObject.activeSelf){
+            //rightDoor.gameObject.SetActive(true);
+            rightDoor.SetOpen();
+            
+        }
+        if(topDoor && !topWall.gameObject.activeSelf){
+           // topDoor.gameObject.SetActive(true);   
+            topDoor.SetOpen();
+        }
+        if(bottomDoor && !bottomWall.gameObject.activeSelf){
+           // bottomDoor.gameObject.SetActive(true);   
+            bottomDoor.SetOpen();
+        }
+
+        if(leftDoorB && !leftWallB.gameObject.activeSelf){
+          //  leftDoorB.gameObject.SetActive(true);
+            leftDoorB.SetOpen();
+            
+        }
+        if(rightDoorB && !rightWallB.gameObject.activeSelf){
+           // rightDoorB.gameObject.SetActive(true);
+            rightDoorB.SetOpen();
+            
+        }
+        if(topDoorB && !topWallB.gameObject.activeSelf){
+           // topDoorB.gameObject.SetActive(true);   
+            topDoorB.SetOpen();
+        }
+        if(bottomDoorB && !bottomWallB.gameObject.activeSelf){
+           // bottomDoorB.gameObject.SetActive(true);   
+            bottomDoorB.SetOpen();
+        }
+    }
+
+    //Temp Function
+    void CheckRoomStatus(){
+
+        if(enemyCount > 0)
+            return;
+    
+    isEnemyInRoom = false;
+    isRoomClear = true;
+    OpenRoom();
+     
     }
 }

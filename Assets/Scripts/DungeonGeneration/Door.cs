@@ -36,7 +36,10 @@ public class Door : MonoBehaviour
     {
         if(other.tag == "Player"){
 
-            if(!currentRoom.isPlayerInRoom)
+            if(!currentRoom.isPlayerInRoom && !currentRoom.isRoomClear)
+                gameObject.SetActive(false);
+
+            if(currentRoom.isRoomClear)
                 gameObject.SetActive(false);
         }
     }
