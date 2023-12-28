@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,12 +6,25 @@ using UnityEngine;
 public class RoomCheck : MonoBehaviour
 {
      public Room currentRoom;
+     public event EventHandler OnPlayerEnterRoomTrigger;
 
     void Awake(){
         currentRoom = gameObject.transform.parent.gameObject.GetComponent<Room>();
     }
    
      void OnTriggerEnter(Collider other) {
+
+        
+
+        if(other.tag == "Player"){
+           // Debug.Log(gameObject.name.ToString());
+          //  Debug.Log("X: " + gameObject.transform.position.x.ToString());
+            //Debug.Log("Z: " + gameObject.transform.position.z.ToString());
+           
+          //  Debug.Log("Triggered");
+           OnPlayerEnterRoomTrigger?.Invoke(this, EventArgs.Empty);
+        }
+        /*
         
         //If Player enters room and room is not cleared, lock room doors
         if(other.tag == "Player" && !currentRoom.isPlayerInRoom && !currentRoom.isRoomClear){
@@ -24,6 +38,7 @@ public class RoomCheck : MonoBehaviour
              currentRoom.isEnemyInRoom = true;
         }
 
+        */
     }
 
       void OnTriggerExit(Collider other)

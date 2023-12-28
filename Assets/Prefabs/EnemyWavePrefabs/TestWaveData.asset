@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5fa23a4c0ff0674ea16f67293e29030, type: 3}
+  m_Name: TestWaveData
+  m_EditorClassIdentifier: 
+  enemyWaveList:
+  - {fileID: 6901330126793453244, guid: e2805ac59078ddf45b26a08257edeeb1, type: 3}
+  - {fileID: 3644233435069769965, guid: 22ff25690f80d2f498fca02da5771264, type: 3}
+  minWaves: 1
+  maxWaves: 3

@@ -705,7 +705,7 @@ RectTransform:
   m_Father: {fileID: 1448660412}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -959,6 +959,7 @@ MonoBehaviour:
   animator: {fileID: 364646628}
   healthBar: {fileID: 736799117}
   deathPrefab: {fileID: 2921677680451986793, guid: e6937a79e3dcdbd4c9d488c8ae3074d6, type: 3}
+  enemyWaveScript: {fileID: 0}
 --- !u!1 &364786466
 GameObject:
   m_ObjectHideFlags: 0
@@ -2198,6 +2199,7 @@ MonoBehaviour:
   animator: {fileID: 0}
   healthBar: {fileID: 470850763}
   deathPrefab: {fileID: 0}
+  enemyWaveScript: {fileID: 0}
 --- !u!1 &769560855
 GameObject:
   m_ObjectHideFlags: 0
@@ -2640,7 +2642,7 @@ RectTransform:
   m_Father: {fileID: 178790577}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -3860,7 +3862,7 @@ RectTransform:
   m_Father: {fileID: 1795575700}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4215,7 +4217,7 @@ RectTransform:
   m_Father: {fileID: 1003462237}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -4899,6 +4901,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dungeonGenerationData: {fileID: 11400000, guid: a5fcd0adf4b4af34eb6af29eec395eab, type: 2}
   playerPrefab: {fileID: 7828800568973770880, guid: 6354f89b19f74ef46b24bd36a962cd0e, type: 3}
+  isLevelSpawned: 0
 --- !u!95 &1411953415
 Animator:
   serializedVersion: 5
@@ -5549,6 +5552,7 @@ MonoBehaviour:
   animator: {fileID: 1601778744}
   healthBar: {fileID: 551575526}
   deathPrefab: {fileID: 2921677680451986793, guid: e6937a79e3dcdbd4c9d488c8ae3074d6, type: 3}
+  enemyWaveScript: {fileID: 0}
 --- !u!114 &1601778748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6443,7 +6447,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6572031153929181808, guid: 584fce6ba7ea69242bfa8706916fa7fd, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6882858372552474973, guid: 584fce6ba7ea69242bfa8706916fa7fd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6585,6 +6589,10 @@ PrefabInstance:
     - target: {fileID: 2921677680451986793, guid: e6937a79e3dcdbd4c9d488c8ae3074d6, type: 3}
       propertyPath: m_Name
       value: GameLoot
+      objectReference: {fileID: 0}
+    - target: {fileID: 2921677680451986793, guid: e6937a79e3dcdbd4c9d488c8ae3074d6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5621940094880479120, guid: e6937a79e3dcdbd4c9d488c8ae3074d6, type: 3}
       propertyPath: m_TagString
@@ -6837,7 +6845,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5492376608720291667, guid: f45c7032b56be37499173896b309b294, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5788832686736529926, guid: f45c7032b56be37499173896b309b294, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

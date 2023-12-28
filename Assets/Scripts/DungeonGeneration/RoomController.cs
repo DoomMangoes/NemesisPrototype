@@ -97,6 +97,9 @@ public class RoomController : MonoBehaviour
             StartCoroutine(SpawnBossRoom());
             Debug.Log("BOSS ROOM SPAWNED!");
 
+            //Spawn Player
+            DungeonGenerator.instance.SpawnPlayer();
+
             } else if(spawnedBossRoom && !updatedRooms){
 
             foreach(Room room in loadedRooms){

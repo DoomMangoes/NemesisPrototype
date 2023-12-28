@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 4760632310390945853}
   - component: {fileID: 3164196216559613107}
   - component: {fileID: 5233359364621072638}
+  - component: {fileID: 9146807033302241615}
   m_Layer: 7
   m_Name: RoomCollider
   m_TagString: Untagged
@@ -72,7 +73,7 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Size: {x: 23.9, y: 5, z: 23.9}
   m_Center: {x: 0, y: 2, z: 0}
@@ -89,6 +90,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentRoom: {fileID: 0}
+--- !u!65 &9146807033302241615
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000020433326503832}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 5.9, y: 5, z: 5.9}
+  m_Center: {x: 0, y: 2, z: 0}
 --- !u!1 &3605815974106463317
 GameObject:
   m_ObjectHideFlags: 0
@@ -284,6 +306,7 @@ Transform:
   - {fileID: 515582918069426788}
   - {fileID: 224876550077803193}
   - {fileID: 4029202778889402436}
+  - {fileID: 5768174548536188752}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!156049354 &3588612075970605324
@@ -356,6 +379,9 @@ MonoBehaviour:
   roomFloor: {fileID: 6626419171661141816}
   floor1: {fileID: 3605815974106463317}
   isPlayerInRoom: 0
+  isEnemyInRoom: 0
+  isRoomClear: 0
+  enemyCount: 0
 --- !u!65 &5349765854817135615
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1257,6 +1283,54 @@ TilemapRenderer:
   m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
+--- !u!1 &7016182851259225679
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5768174548536188752}
+  - component: {fileID: 9059398159640414070}
+  m_Layer: 0
+  m_Name: RoomBattleSystem
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5768174548536188752
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7016182851259225679}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6839388950611385390}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &9059398159640414070
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7016182851259225679}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65d3f4c612565fd48b98e529625059b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentRoom: {fileID: 1026395779913787802}
+  roomCheck: {fileID: 5233359364621072638}
+  enemyWaveData: {fileID: 11400000, guid: 3174163d886574c44aabcab7cde19e2a, type: 2}
+  state: 0
 --- !u!1 &7113642455079471779
 GameObject:
   m_ObjectHideFlags: 0

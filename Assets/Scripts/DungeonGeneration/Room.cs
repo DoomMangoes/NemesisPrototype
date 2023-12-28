@@ -46,7 +46,10 @@ public class Room : MonoBehaviour
     void Awake(){
        
         //Temp
+
+        //Debug.Log("X: " + this.X + " Z: " + this.Z);
         enemyCount = 3;
+
 
         int rand = Random.Range(0,4);
         float randRotateY = rand * 90;
@@ -75,6 +78,7 @@ public class Room : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+
         if(RoomController.instance == null){
             Debug.Log("Wrong Scene");
             return;
@@ -156,6 +160,7 @@ public class Room : MonoBehaviour
 
     void Update(){
 
+        //Debug.Log("X: " + this.X + " Z: " + this.Z);
 
         if(name.Contains("End") && !updatedDoors){
             CheckAdjacentRoom();
@@ -482,7 +487,6 @@ public class Room : MonoBehaviour
     
     public void LockRoom(){
 
-        if(isPlayerInRoom)
             LockDoors();
 
     }
@@ -533,7 +537,6 @@ public class Room : MonoBehaviour
 
     public void OpenRoom(){
 
-        if(isPlayerInRoom && !isEnemyInRoom)
             OpenDoors();
 
     }

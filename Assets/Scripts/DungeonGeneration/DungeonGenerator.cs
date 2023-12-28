@@ -12,14 +12,21 @@ public class DungeonGenerator : MonoBehaviour
 
     private GameObject player;
 
-    private void Start(){
+    public bool isLevelSpawned;
+    
+    public static DungeonGenerator instance;
 
+    void Awake()
+    {
+        instance = this;    
+    }
+    private void Start(){
+        isLevelSpawned = false;
         dungeonRooms = DungeonCrawlerController.GenerateDungeon(dungeonGenerationData);
 
         SpawnRooms(dungeonRooms);
 
-        player = Instantiate(playerPrefab, new Vector3(0, 1.5f, 0), Quaternion.identity);
-        CamFollow.instance.target = player.transform;
+       // SpawnPlayer();
            
     }
 
@@ -39,5 +46,9 @@ public class DungeonGenerator : MonoBehaviour
         
     }
   
+    public void SpawnPlayer(){
+        player = Instantiate(playerPrefab, new Vector3(0, 1.5f, 0), Quaternion.identity);
+       CamFollow.instance.target = player.transform;
+    }
     
 }

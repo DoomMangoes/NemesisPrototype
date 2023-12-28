@@ -17,6 +17,11 @@ public class Door : MonoBehaviour
 
     }
 
+    public enum State{
+        Open,
+        Locked,
+    }
+
     public DoorType doorType;
    
     MeshRenderer _renderer;
@@ -27,31 +32,35 @@ public class Door : MonoBehaviour
     [SerializeField]
     Material lockedDoorMaterial;
 
+    public State state;
+
     void Awake(){
         _renderer = GetComponent<MeshRenderer>();
         currentRoom = gameObject.transform.parent.gameObject.GetComponent<Room>();
+        state = State.Open;
     }
     
      void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player"){
 
-            if(!currentRoom.isPlayerInRoom && !currentRoom.isRoomClear)
+            if(state == State.Open)
                 gameObject.SetActive(false);
-
-            if(currentRoom.isRoomClear)
-                gameObject.SetActive(false);
+            
         }
     }
 
     public void SetLocked(){
 
+        state = State.Locked;
         if(_renderer){
             _renderer.material = lockedDoorMaterial;
         }
     }
 
     public void SetOpen(){
+
+        state = State.Open;
 
         if(_renderer){
             _renderer.material = openDoorMaterial;

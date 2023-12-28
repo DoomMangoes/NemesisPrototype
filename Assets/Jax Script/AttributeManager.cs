@@ -16,6 +16,18 @@ public class AttributeManager : MonoBehaviour
     public delegate void BossDefeatedEvent();
     public static event BossDefeatedEvent OnBossDefeated;
 
+    //Wave Checking Mechanics
+
+    public EnemyWaveScript enemyWaveScript;
+
+    void Awake(){
+        //Wave Checking Mechanics
+        if(gameObject.tag == "Enemy"){
+            enemyWaveScript = gameObject.transform.parent.gameObject.GetComponent<EnemyWaveScript>();
+        }
+        
+    }
+
     void Start()
     {
         currentHealth = maxHealth;
@@ -57,7 +69,17 @@ public class AttributeManager : MonoBehaviour
             Instantiate(deathPrefab, transform.position, Quaternion.identity);
         }
 
+       
         // Destroy the object
-        Destroy(gameObject);
+        //Destroy(gameObject);
+
+        //Wave Checking Mechanics
+
+        gameObject.SetActive(false);
+        /*
+        if(gameObject.tag == "Enemy"){
+            enemyWaveScript.CheckWaveOver();
+        }
+        */
     }
 }
