@@ -175,6 +175,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: treantKnight (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 2055709299496358931, guid: 49b43261b184b434fbb5d3d9443beb00, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -237,6 +241,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: treantKnight (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2055709299496358931, guid: 49b43261b184b434fbb5d3d9443beb00, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -298,6 +306,10 @@ PrefabInstance:
     - target: {fileID: 2055709299496358931, guid: 49b43261b184b434fbb5d3d9443beb00, type: 3}
       propertyPath: m_Name
       value: treantKnight (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055709299496358931, guid: 49b43261b184b434fbb5d3d9443beb00, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -484,6 +496,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: treantKnight (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 2055709299496358931, guid: 49b43261b184b434fbb5d3d9443beb00, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -546,6 +562,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: treantKnight
       objectReference: {fileID: 0}
+    - target: {fileID: 2055709299496358931, guid: 49b43261b184b434fbb5d3d9443beb00, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -607,6 +627,10 @@ PrefabInstance:
     - target: {fileID: 2055709299496358931, guid: 49b43261b184b434fbb5d3d9443beb00, type: 3}
       propertyPath: m_Name
       value: treantKnight (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2055709299496358931, guid: 49b43261b184b434fbb5d3d9443beb00, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

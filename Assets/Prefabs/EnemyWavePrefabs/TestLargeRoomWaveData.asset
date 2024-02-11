@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5fa23a4c0ff0674ea16f67293e29030, type: 3}
+  m_Name: TestLargeRoomWaveData
+  m_EditorClassIdentifier: 
+  enemyWaveList:
+  - {fileID: 2519878622600203179, guid: 33643d9ebf384fb499bed80a1f5224d5, type: 3}
+  - {fileID: 2519878622600203179, guid: c19ac739ac69fca40a3f1eabebe8fd2c, type: 3}
+  minWaves: 1
+  maxWaves: 2

@@ -38,18 +38,14 @@ public class Room : MonoBehaviour
     //Room Check Variables
 
     public bool isPlayerInRoom = false;
-    public bool isEnemyInRoom = true;
-    public bool isRoomClear= false;
+    //public bool isEnemyInRoom = true;
+    //public bool isRoomClear= false;
 
-    public int enemyCount;
+    //public int enemyCount;
 
     void Awake(){
        
-        //Temp
-
         //Debug.Log("X: " + this.X + " Z: " + this.Z);
-        enemyCount = 3;
-
 
         int rand = Random.Range(0,4);
         float randRotateY = rand * 90;
@@ -170,8 +166,11 @@ public class Room : MonoBehaviour
 
 
         //Temp Room Function Check
+        /*
         if(isEnemyInRoom)
             CheckRoomStatus();
+
+        */
     }
 
      void OnDrawGizmos() {
@@ -583,6 +582,7 @@ public class Room : MonoBehaviour
     }
 
     //Temp Function
+    /*
     void CheckRoomStatus(){
 
         if(enemyCount > 0)
@@ -593,4 +593,5 @@ public class Room : MonoBehaviour
     OpenRoom();
      
     }
+    */
 }

@@ -31,7 +31,7 @@ public class RoomBattleSystemScript : MonoBehaviour
 
         state = State.Idle;
         waveCount = Random.Range(enemyWaveData.minWaves, enemyWaveData.maxWaves + 1);
-        currentWaveCount = 1;
+        currentWaveCount = 0;
         
     }
 
@@ -69,12 +69,14 @@ public class RoomBattleSystemScript : MonoBehaviour
                                     parentTransform.position.z), Quaternion.identity);
 
         currentWave.transform.parent = gameObject.transform;
+        
         currentWaveCount++;
 
     }
 
     public void CheckWavesLeft(){
-        if(currentWaveCount <= waveCount && state == State.Active){
+
+        if(currentWaveCount < waveCount && state == State.Active){
             SpawnWave();
         }
         else{
@@ -84,11 +86,11 @@ public class RoomBattleSystemScript : MonoBehaviour
     }
 
     private void EndBattle(){
+
         Debug.Log("Room Clear");
         state = State.Clear;
         currentRoom.OpenRoom();
-        
-        //SpawnWave();
+
     }
     
 }
